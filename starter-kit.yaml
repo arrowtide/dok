@@ -21,8 +21,6 @@ export_paths:
   - package.json
   - postcss.config.js
   - vite.config.js
-  - DOCUMENTATION.md
-  - README.md
 modules:
   required:
     default: true
