@@ -1,0 +1,111 @@
+title: Release
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        display: Content
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: version
+            field:
+              prepend: v
+              type: text
+              display: Version
+              instructions: "The version for this projects release. It's recommended to use the `1.x`, `2.x`format."
+              placeholder: 1.x
+          -
+            handle: version_collection
+            field:
+              max_items: 1
+              mode: select
+              type: collections
+              display: Collection
+              instructions: 'The collection this release uses.'
+              width: 50
+          -
+            handle: version_navigation
+            field:
+              max_items: 1
+              mode: select
+              type: navs
+              display: Navigation
+              instructions: 'The navigation this release uses.'
+              width: 50
+      -
+        display: Settings
+        fields:
+          -
+            handle: show_outdated_banner
+            field:
+              type: toggle
+              display: 'Show outdated banner'
+              instructions: 'If this release is outdated, you may choose to show a banner to guide users towards the latest documentation.'
+          -
+            handle: label
+            field:
+              options:
+                -
+                  key: current
+                  value: Current
+                -
+                  key: beta
+                  value: Beta
+                -
+                  key: alpha
+                  value: Alpha
+              type: select
+              display: Label
+              instructions: 'A label only used in the frontend to help users better understand the type of this release. Labels are shown in some areas next to the version.'
+          -
+            handle: content_is_computed
+            field:
+              type: toggle
+              display: 'Computed Content'
+              instructions: "If you're using Github to sync your content, toggle this **on**. This will turn the `content` field into a [Computed Value](https://statamic.dev/computed-values)."
+      -
+        display: Github
+        fields:
+          -
+            handle: github_repository_url
+            field:
+              placeholder: github.com/<owner>/<repo>
+              prepend: 'https://'
+              type: text
+              display: 'Repository URL'
+              instructions: 'The repository url for this project or version.'
+          -
+            handle: github_edit_url
+            field:
+              placeholder: github.com/<owner>/<repo>/edit/<branch>
+              prepend: 'https://'
+              type: text
+              display: 'Edit URL'
+              instructions: 'The Github edit URL for this version.'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'
+          -
+            handle: parent
+            field:
+              type: entries
+              collections:
+                - releases
+              max_items: 1
+              listable: false
+              localizable: true

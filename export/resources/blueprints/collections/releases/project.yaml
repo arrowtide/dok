@@ -1,0 +1,79 @@
+title: Project
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              validate:
+                - required
+          -
+            handle: latest_stable_release
+            field:
+              max_items: 1
+              create: false
+              collections:
+                - releases
+              type: entries
+              display: 'Latest stable release'
+              instructions: 'The latest, stable release for this project.'
+      -
+        display: Logos
+        fields:
+          -
+            handle: logo
+            field:
+              container: assets
+              type: assets
+              display: Logo
+              max_files: 1
+              mode: grid
+              dynamic: slug
+              instructions: 'The default logo for this project.'
+          -
+            handle: logo_dark
+            field:
+              container: assets
+              type: assets
+              display: 'Dark logo'
+              instructions: 'The logo for this project when the current theme is dark.'
+              max_files: 1
+              mode: grid
+              dynamic: slug
+          -
+            handle: logo_class
+            field:
+              type: text
+              display: Class
+              instructions: 'Apply CSS classes to this svg finetune the output style of the logos.'
+          -
+            handle: logo_title
+            field:
+              type: text
+              display: Title
+              instructions: 'The accessible name for this link.'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate: 'max:200'
+          -
+            handle: parent
+            field:
+              type: entries
+              collections:
+                - releases
+              max_items: 1
+              listable: false
+              localizable: true

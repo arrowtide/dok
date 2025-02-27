@@ -1,0 +1,42 @@
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        fields:
+          -
+            handle: projects
+            field:
+              type: replicator
+              display: Projects
+              sets:
+                new_set_group:
+                  display: 'New Set Group'
+                  sets:
+                    project:
+                      display: Project
+                      icon: puzzle-piece
+                      fields:
+                        -
+                          handle: versions
+                          field:
+                            type: grid
+                            display: Versions
+                            mode: stacked
+                            fields:
+                              -
+                                handle: version
+                                field:
+                                  type: text
+                                  display: Version
+                              -
+                                handle: root
+                                field:
+                                  type: text
+                                  display: Root
+                              -
+                                handle: collection
+                                field:
+                                  mode: select
+                                  type: collections
+                                  display: Collection

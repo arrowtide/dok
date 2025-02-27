@@ -1,0 +1,67 @@
+{{ $position_class = switch(
+    (position == 'left') => 'top-0 left-0',
+    () => 'top-0 right-0',
+)}}
+
+{{ $transition_hidden = switch(
+    (position == 'left') => 'opacity-0 -translate-x-5',
+    () => 'opacity-0 translate-x-5',
+)}}
+
+{{ $transition_visible = switch(
+    (position == 'left') => 'opacity-100 translate-x-0',
+    () => 'opacity-100 translate-x-0',
+)}}
+
+<div 
+    x-data="componentDrawer('{{ name }}')"
+    x-bind="eventListeners"
+>
+    <div 
+        class="fixed flex flex-col {{ if height == 'full' }}min-h-dvh{{ /if }} {{ $position_class }} max-h-dvh w-dvw max-w-lg p-4 sm:pl-10 sm:p-10 z-50 translate-3d transition duration-200 pointer-events-none"
+        x-transition:enter-start="{{ $transition_hidden }}"
+        x-transition:enter-end="{{ $transition_visible }}"
+        x-transition:leave-start="{{ $transition_visible }}"
+        x-transition:leave-end="{{ $transition_hidden }}"
+        x-show="open"
+        x-cloak
+        role="dialog"
+        aria-modal="true"
+        x-trap.inert.noscroll="open"
+    >
+        <div class="relative flex flex-col h-full overflow-auto grow bg-popover-background shadow-lg rounded-lg transition duration-1000 border border-dropdown-border pointer-events-auto">
+
+            <button @click="open = ! open" class="flex items-center p-2 z-10 rounded-md bg-black/2 dark:bg-white/2 border border-black/5 dark:border-white/5 text-text absolute top-5 right-5">
+                {{ svg src="close" class="size-6" }}
+                <span class="sr-only">Close"></span>
+            </button>
+
+            {{ slot:content }}
+        </div>
+    </div>
+    <div 
+        class="overlay transition duration-300" 
+        x-show="open"  
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        @click="open = false" 
+        x-cloak
+    ></div>
+</div>
+
+{{ once }}
+    {{ push:scripts }}
+        <script type="module">
+            Alpine.data('componentDrawer', (name) => ({
+                open: false,
+                eventListeners: {
+                    [`@open-${name}.window`]() {
+                        this.open = true;
+                    },
+                }
+            }));
+        </script>
+    {{ /push:scripts }}
+{{ /once }}

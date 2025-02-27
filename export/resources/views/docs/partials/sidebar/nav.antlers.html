@@ -1,0 +1,40 @@
+<menu x-data="menu()" class="flex flex-col">
+    {{ nav handle="{release:nav_handle}" }}
+        {{ $depth_1_index = {index} }}
+        <li>
+            {{ if children }}
+                <h2 class="text-xs font-medium text-sidebar-title block my-1 relative group">
+                    <button class="inline-flex items-center cursor-pointer py-2 group-hover:text-sidebar-title-focus" @click="active = `{{ index }}`" :aria-expanded="active == `{{ index }}`">
+                        {{ title }}
+                    </button>
+                </h2>
+                <ul 
+                    class="flex flex-col" 
+
+                    {{ if ({children} | where('uri', {current_uri}) | count) == 1}}
+                        x-init="active = '{{ $depth_1_index }}'"
+                    {{ else }}
+                        x-cloak
+                    {{ /if }}
+                    x-show="active == `{{ $depth_1_index }}`" 
+                    x-collapse.duration.300
+                    >
+                    {{ children }}
+                        <li class="inline-flex [:last-child]:pb-3 items-center relative text-xs hover:text-sidebar-text-focus transition-colors tracking-[0.028rem] text-sidebar-text pl-4 my-1 hover:before:translate-x-0 before:content-[''] {{ unless is_current }}before:-translate-x-2 before:opacity-0 {{ /unless}} hover:before:opacity-100 before:transition-transform before:block before:rounded-full before:bg-accent before:w-[0.188rem] before:h-5 before:absolute before:left-0">
+                           <a href="{{ uri }}" class="block py-2">{{ title }}</a>
+                        </li>
+                    {{ /children }}
+                </ul>
+            {{ /if }}
+        </li>
+    {{ /nav }}
+</menu>
+
+<script>
+    function menu(){
+        return {
+            currentUri: '{{ current_uri }}',
+            active: null,
+        }
+    }
+</script>

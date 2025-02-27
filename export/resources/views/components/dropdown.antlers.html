@@ -1,0 +1,115 @@
+{{#
+    @name Dropdown Component
+    @desc A dropdown component, show anything under a simple dropdown!
+#}}
+<span 
+    x-data="componentDropdown('{{ name }}', '{{ anchor or 'bottom-center'}}')" 
+    class="{{ container_class }}" 
+    x-bind="container"
+>
+    <span {{ x-data | attribute('x-data') }} class="w-full flex">
+        {{ slot:button }}
+
+        <div
+            class="fixed z-40 p-1 mt-2 overflow-auto min-w-[9rem] bg-popover-background border rounded-md shadow-lg content-visibility-auto w-fit"
+            x-cloak
+            x-bind="dropdown"
+            x-ref="panel"
+        >
+            {{ slot:content }}
+        </div>
+    </span>
+</span>
+
+{{ once }}
+    {{ push:scripts }}
+        <script type="module">
+            Alpine.data('componentDropdown', (uid, anchor) => ({
+                open: false,
+                init() {
+                    const focusables = this.$focus.within(this.$root.querySelector('[x-ref="panel"]')).focusables();
+                    focusables.forEach(el => {
+                        el.tabIndex = '-1';
+                    });
+                },
+                toggle(open) {
+                    this.open = open || ! this.open;
+                },
+                close() {
+                    this.open = false;
+                },
+                dropdownClose() {
+                    this.open = false;
+                },
+                container: {
+                    ['@keydown.tab']($event) {
+                        this.dropdownClose();
+                    },
+                },
+                button: {
+                    [':aria-haspopup']() {
+                        return this.open;
+                    },
+                    [':aria-expanded']() {
+                        return this.open;
+                    },
+                    ['@click']() {
+                        this.toggle();
+                    },
+                    ['@keydown.down.prevent']() {
+                        this.toggle();
+                        
+                        this.$nextTick(() => {
+                            if (this.open) {
+                                let firstFocusableEl = this.$focus.within(this.$root.querySelector('[x-ref="panel"]')).getFirst();
+                                console.log(firstFocusableEl);
+                                this.$focus.focus(firstFocusableEl);
+    
+                                return;
+                            }
+                        });
+                    },
+                    [':data-active']() {
+                        return this.open;
+                    },
+                    'type': 'button',
+                    'aria-haspopup': 'menu',
+                    'id': `dropdown-button-${ uid }`,
+                    'aria-controls': `dropdown-panel-${ uid }`,
+                },
+                dropdown: {
+                    ['x-show']() {
+                        return this.open;
+                    },
+                    ['@click.away']() {
+                        this.open = false;
+
+                        this.$nextTick(() =>{
+                            this.$refs.button.focus();
+                        });
+                    },
+                    ['@keydown.down.prevent']() {
+                        this.$focus.wrap().next();
+                    },
+                    ['@keydown.up.prevent']() {
+                        this.$focus.wrap().previous();
+                    },
+                    [`x-anchor.${anchor}`]() {
+                        return this.$refs.button;
+                    },
+                    'id': `dropdown-panel-${ uid }`,
+                    'role': 'menu',
+                    'tabindex': '-1',
+                    'aria-labelledby': `dropdown-button-${ uid }`,
+                    'aria-orientation': 'vertical',
+                    'x-transition:enter': 'transition ease-out duration-200',
+                    'x-transition:enter-start': 'opacity-0 scale-95 translate-y-2',
+                    'x-transition:enter-end': 'opacity-100 scale-100 translate-y-0',
+                    'x-transition:leave': 'transition ease-in duration-100',
+                    'x-transition:leave-start': 'opacity-100',
+                    'x-transition:leave-end': 'opacity-0',
+                }
+            }));
+        </script>
+    {{ /push:scripts }}
+{{ /once }}

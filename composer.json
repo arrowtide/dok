@@ -1,0 +1,9 @@
+{
+    "name": "arrowtide/dok",
+    "extra": {
+        "statamic": {
+            "name": "Dok",
+            "description": "A beautiful documentation starterkit."
+        }
+    }
+}

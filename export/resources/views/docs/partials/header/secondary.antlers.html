@@ -1,0 +1,78 @@
+---
+breadcrumb_class_default: 'flex items-center gap-2 text-text text-2xs sm:text-xs'
+breadcrumb_class_focusable: 'flex items-center gap-2 text-text text-xs hover:text-accent focus:text-accent'
+breadcrumbs_separator: 'carret-double-right'
+breadcrumbs_separator_class: 'size-2 text-text opacity-80'
+---
+
+{{ $release_home_url = {release:home_url} }}
+
+<header class="py-1 w-full border-b border-black/10 dark:border-white/10">
+    <div class="container"> 
+        <div class="flex justify-between flex-wrap sm:flex-nowrap py-2">
+
+            {{# The mobile button for the sidebar which includes the breadcrumbs #}}
+            <div class="flex lg:hidden">
+                <button class="flex items-center gap-2 text-text cursor-pointer" x-data @click="$dispatch('open-docs-navigation')"> 
+                    {{ svg src="hamburger" class="size-5 sm:size-6 text-text-strong" }}
+                    <span class="sr-only">Menu</span>
+
+                    <span class="flex items-center gap-2" aria-hidden="true">
+                        {{ nav:breadcrumbs include_home="false" }}
+                            {{ if first }}
+                                <span class="{{ view:breadcrumb_class_default }}" {{ if is_current }}aria-current="page"{{ /if }}>
+                                    Home
+                                    {{ svg :src="view:breadcrumbs_separator" :class="view:breadcrumbs_separator_class" }}
+                                </span>
+                            {{ /if  }}
+                            <span class="{{ view:breadcrumb_class_default }} {{ is_current ?= 'text-text-focus' }}">
+                                {{ title }}
+                                {{ unless last }} {{ svg :src="view:breadcrumbs_separator" :class="view:breadcrumbs_separator_class" }} {{ /unless }}
+                            </span>
+                        {{ /nav:breadcrumbs }}
+                    </span>
+                </button>
+            </div>
+
+            {{ push:popovers }}
+                {{ partial:components/drawer name="docs-navigation" position="left" height="full" }}
+                    {{ slot:content }}
+                        <div class="p-10">
+                            <div class="flex flex-col grow transition duration-1000 starting:opacity-0 starting:translate-y-1">
+                                <h2 class="text-lg mb-0 text-text-strong font-medium mt-5">{{ project:title }}</h2>
+                                {{ partial:components/separator class="mb-5 mt-3" }}
+
+                                <div class="flex flex-col grow w-full max-w-4xl mx-auto">
+                                    {{ partial:docs/partials/sidebar/nav }}
+                                </div>
+                            </div>
+                        </div>
+                    {{ /slot:content }}
+                {{ /partial:components/drawer }}
+            {{ /push:popovers }}
+
+            {{# The desktop breadcrumbs #}}
+            <ul class="gap-2 items-center hidden lg:flex">
+                {{ nav:breadcrumbs include_home="false" }}
+                    {{ if first }}
+                        <li class="{{ view:breadcrumb_class_default }}" {{ is_current ?= {'page' | attribute('aria-current')} }}>
+                            <a>Home</a>
+                            {{ svg :src="view:breadcrumbs_separator" :class="view:breadcrumbs_separator_class" }}
+                        </li>
+                    {{ /if }}
+
+                    <li class="{{ view:breadcrumb_class_focusable }} {{ is_current ?= 'text-text-focus' }}" {{ if is_current }}aria-current="page"{{ /if }}>
+                        <a href="{{ url }}">{{ title }}</a>
+                        {{ unless last }} {{ svg :src="view:breadcrumbs_separator" :class="view:breadcrumbs_separator_class" }} {{ /unless }}
+                    </li>
+                {{ /nav:breadcrumbs }}
+            </ul>
+
+            {{ if {project:has_versions} }} 
+                {{ partial:docs/partials/versions }}
+            {{ /if }}
+        </div>
+    </div>
+</header>
+
+

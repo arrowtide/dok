@@ -1,0 +1,82 @@
+
+{{ partial:components/dropdown name="theme-toggle" anchor="top.offset.20" x-data="themeToggle()" }}
+    {{ slot:button }}
+        <button 
+            class="flex items-center w-full text-xs gap-3 py-3 px-4 text-text hover:text-text-focus focus:text-focus cursor-pointer transition duration-100 border border-black/5 dark:border-white/5 hover:bg-black/3 dark:hover:bg-white/3 rounded-xl data-active:bg-black/3 dark:data-active:bg-white/3 data-active:text-text-strong" 
+            x-ref="button" 
+            x-bind="button"
+        >
+            {{ svg src="theme-system.svg" class="size-5" }}
+            <span x-text="currentThemeTitle">Theme</span>
+            {{ svg src="dropdown" class="size-2.5 ml-auto" }}
+        </button>
+    {{ /slot:button }}
+    {{ slot:content }}
+        <div class="space-y-1">
+            <button class="flex items-center gap-3 p-3 cursor-pointer w-full rounded transition hover:bg-popover-background-focus text-text hover:text-accent focus:text-accent text-sm " @click="toggleTheme('system')">
+                {{ svg src="theme-system.svg" class="size-4" }}
+                System
+            </button>
+
+            {{ partial:components/separator }}
+
+            <button class="flex items-center gap-3 p-3 cursor-pointer w-full rounded transition hover:bg-popover-background-focus text-text hover:text-accent focus:text-accent text-sm" @click="toggleTheme('light')">
+                {{ svg src="theme-light.svg" class="size-4" }}
+                Light
+            </button>
+
+            {{ partial:components/separator }}
+
+            <button class="flex items-center gap-3 p-3 cursor-pointer w-full rounded transition hover:bg-popover-background-focus text-text hover:text-accent focus:text-accent text-sm" @click="toggleTheme('dark')">
+                {{ svg src="theme-dark.svg" class="size-4" }}
+                Dark
+            </button>
+        </div>
+    {{ /slot:content }}
+{{ /partial:components/dropdown }}
+
+{{ push:scripts }}
+    <script type="module">
+        Alpine.data('themeToggle', () => ({
+            currentThemeTitle: '',
+            themes: ['light', 'dark'],
+
+            init() {
+                this.currentThemeTitle = this.titleify(localStorage.getItem('theme') || 'system');
+            },
+
+            toggleTheme(theme) {
+                this.currentThemeTitle = this.titleify(theme);
+
+                if (theme == 'system') {
+                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        this.enableTheme('dark');
+                    }
+
+                    return;
+                }
+                
+                this.enableTheme(theme);
+            },
+        
+            enableTheme(theme) {
+                this.themes.forEach((themeName) => {
+                    document.documentElement.classList.remove(themeName);    
+                });
+                
+                document.documentElement.classList.add(theme);
+
+                localStorage.theme = theme;
+
+                this.dropdownClose();
+            },
+
+            titleify(text) {
+                return text.replace(
+                    /\w\S*/g,
+                    text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+                );
+            }
+        }));
+    </script>
+{{ /push:scripts }}

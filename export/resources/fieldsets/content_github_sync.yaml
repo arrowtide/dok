@@ -1,0 +1,16 @@
+title: 'Content (Github Sync)'
+fields:
+  -
+    handle: resource_location
+    field:
+      dictionary: resource_locations
+      type: dictionary
+      display: 'Resource Location'
+      replicator_preview: false
+      max_items: 1
+  -
+    handle: content
+    field:
+      type: markdown
+      display: Content
+      visibility: computed

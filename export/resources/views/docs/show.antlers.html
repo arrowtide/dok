@@ -1,0 +1,33 @@
+<div class="flex flex-col">
+    <header class="sticky top-0 bg-body-background/80 backdrop-blur-[10px] z-20">
+        {{ partial:docs/partials/header/main }}
+        {{ partial:docs/partials/header/secondary }}
+    </header>
+
+    <div class="flex items-start container">
+        <div class="flex items-center justify-center absolute w-full top-0 left-0 pointer-events-none">
+            <div class="blur-3xl to-transparent  bg-gradient-to-t from-accent/10 h-[400px] rotate-[-10deg] w-[1200px]"></div>
+        </div>
+
+        <aside class="fixed top-[8.2rem] overflow-auto w-sidebar-width h-full max-h-[calc(100dvh-8.2rem)] shrink-0 hidden lg:flex border-r border-black/5 dark:border-white/5">
+            <div class="max-h-[calc(100dvh-8.2rem)] overflow-y-auto w-full pr-8 py-16">
+                <div class="flex flex-col">
+                    {{ partial:docs/partials/sidebar/nav }}
+                </div>
+            </div>
+        </aside>
+
+        <div class="w-full flex flex-col max-w-full min-h-screen min-w-0 pt-16">
+            <div class="grow lg:pl-sidebar-width ml-auto w-full">
+                <div class="lg:pl-20 flex flex-col">
+                    <main>
+                        {{ partial:docs/partials/document/outdated }}
+                        {{ partial:docs/partials/document/document }}
+                    </main>
+    
+                    {{ partial:docs/partials/document/footer }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+tree:
+  -
+    id: 56946a3e-714a-4070-96df-ba7b3cfbc1bb
+    title: Introduction
+    children:
+      -
+        id: 2eabe84a-bb94-4339-b628-d1c2b035efd3
+        entry: 6b840926-cefd-4f71-b327-1ab3a0c2d5ca
+  -
+    id: 83c5765a-69d5-41aa-baf7-339107ef83d7
+    title: 'Starter Kit'
+    children:
+      -
+        id: 43972ce7-8514-4405-b490-683254563ee5
+        title: 'Marketplace listing'
+        url: 'https://statamic.com/starter-kits/arrowtide/dok-documentation'
+      -
+        id: 60043c86-eaae-40bb-b8b8-6774f02cb983
+        title: Documentation
+        url: 'https://statamic.com/starter-kits/arrowtide/dok-documentation'

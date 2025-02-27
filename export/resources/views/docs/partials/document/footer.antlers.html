@@ -1,0 +1,37 @@
+
+<footer class="mt-auto border-t border-black/5 dark:border-white/5">
+    {{ if {release:github_edit_url} }}
+        <a 
+            href="{{ {release:github_edit_url} | ensure_left('https://') | ensure_right('/') }}{{ resource_location.shortPath }}" 
+            class="inline-flex items-center text-sm py-5 text-text hover:text-accent"
+            target="_blank"
+        >
+            Edit this page on Github
+            <span>{{ svg src="external-link" class="size-4 ml-1" aria-hidden="true" }}</span>
+            <span class="sr-only">Opens in new tab</span>
+        </a>
+    {{ /if }}
+
+
+    {{ partial:components/separator }}
+
+    <div class="flex items-center justify-between py-5">
+        {{ if {release:github_repo_url} }}
+            <div>
+                <a 
+                    href="{{ {release:github_repo_url} | ensure_left('https://') }}" 
+                    class="flex items-center text-xs gap-3 py-2 text-text hover:text-text-focus focus:text-focus cursor-pointer transition duration-100"
+                    target="_blank"
+                >
+                    {{ svg src="github" class="size-5" aria-hidden="true" }}
+                    <span class="sr-only">Github</span>
+                </a>
+            </div>
+        {{ /if }}
+        
+        <div class="ml-auto">
+            <p class="text-xs text-text mb-2">Theme</p>
+            {{ partial:docs/partials/theme }}
+        </div>
+    </div>
+</footer>

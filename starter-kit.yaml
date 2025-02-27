@@ -1,0 +1,32 @@
+export_paths:
+  - app/Console/Commands/SyncGitHub.php
+  - app/Dictionaries/ResourceLocations.php
+  - app/Http/Controllers/GitHubSyncController.php
+  - app/Providers/AppServiceProvider.php
+  - app/Tags/Project.php
+  - content/collections/pages.yaml
+  - content/collections/releases.yaml
+  - content/collections/pages/home.md
+  - content/collections/example_v1
+  - content/collections/releases/example_v1.md
+  - content/collections/example_v1.yaml
+  - content/navigation/example_v1.yaml
+  - content/trees/navigation/example_v1.yaml
+  - resources/blueprints
+  - resources/css
+  - resources/js
+  - resources/svg
+  - resources/fieldsets
+  - resources/views
+  - package.json
+  - postcss.config.js
+  - vite.config.js
+  - DOCUMENTATION.md
+  - README.md
+modules:
+  required:
+    default: true
+    prompt: false
+    dependencies:
+      alt-design/alt-redirect: dev-main
+      spatie/commonmark-shiki-highlighter: dev-main

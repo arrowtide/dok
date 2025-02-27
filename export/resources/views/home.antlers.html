@@ -1,0 +1,97 @@
+---
+cards: 
+    -   
+        title: "Setup your homepage"
+        description: "Set up your homepage by starting fresh or editing this template."
+    -
+        title: "Write your content"
+        description: "Write content directly to your site, or import from Github."
+    -
+        title: "Launch"
+        description: "Launch your beautiful new documentation site!"
+---
+
+
+{{ partial:layout/header }}
+
+<main>
+    <div class="container border-x border-midnight-100 overflow-hidden relative">
+
+        <header class="pt-20 md:pt-50 text-center">
+            <div class="absolute pointer-events-none -top-[500px] bg-gradient-to-b blur-2xl from-slate-500/40 h-[1000px] to-transparent w-[200px] -left-[100px] -rotate-45 z-10"></div>
+
+            <div class=" mt-10">
+                <h1 class="text-4xl md:text-5xl text-white mb-5 leading-snug max-w-4xl mx-auto">Create <em>beautiful</em> documentation websites with [dok]</h1>
+                <div class="text-text">
+                    <p class="text-basemd:text-lg text-white/80 tracking-wide mt-5">Dok is a modern and easy to use documentation starterkit based on Statamic.</p>
+                </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5 mt-20 max-w-70 sm:max-w-120 mx-auto">
+                <a class="px-5 py-3 inline-block bg-accent font-medium text-white transition rounded-md hover:bg-accent/90" href="/example/1.x">Get Started</a>
+                <a class="px-5 py-3 inline-block text-white rounded-md hover:bg-white/5 transition" href="https://statamic.com/starter-kits/arrowtide/dok-documentation" target="_blank">View on Statamic</a>
+            </div>
+        </header>
+
+        {{ partial:components/separator divider="true" class="my-20 sm:my-30 max-w-3xl mx-auto" }}
+
+        <section>
+            <div class="prose text-center">
+                <h2 class="mb-5">What's next?</h2>
+                <div class="max-w-3xl text-center mx-auto">
+                    <p>
+                        You are now ready to get cooking. 
+                        As Dok can be used for a single project or documentation for multiple projects, addons or products, we've 
+                        provided a barebones setup to help you get up and running as quickly as possible.
+                    </p>
+                </div>
+            </div>
+        
+            <ul class="grid md:grid-cols-3 gap-10 mt-20">
+                {{ view:cards }}
+                    <li class="text-text border p-5 rounded-md bg-gradient-to-br from-midnight-300 to-midnight-800">
+                        <div class="rounded-xl aspect-square size-10 flex items-center justify-center text-black font-semibold bg-[#E1CDC1]">
+                            {{ index + 1 }}
+                        </div>
+                        <div class="prose">
+                            <h3 class="mb-2 mt-5">{{ title }}</h3>
+                            <p>{{ description }}</p>
+                        </div>
+                    </li>
+                {{ /view:cards }}
+            </ul>
+    
+            {{ partial:components/callout type="important" }}
+                {{ slot:content }}
+                    <div class="prose prose-sm">
+                        <p><strong>It's strongly recommend setting up GIT locally before going any further</strong> so that you can track your changes and revert them if required.</p>
+                    </div>
+                {{ /slot:content }}
+            {{ /partial:components/callout }}
+        </section>
+
+        {{ partial:components/separator divider="true" class="mt-30 max-w-3xl mx-auto" }}
+        
+        <section class="relative py-30 sm:py-50">
+            <div class="flex items-center justify-center absolute inset-0 pointer-events-none">
+                <div class="blur-3xl to-accent/0  bg-gradient-to-t from-accent/20 h-[400px] rotate-[-10deg] w-[900px]"></div>
+                <div class="bg-gradient-to-b blur-3xl translate-y-20 from-accent/20 h-[320px] to-primary/0  w-[400px]"></div>
+            </div>
+
+            <div class="text-center">
+                <div class="prose">
+                    <h2 class="text-4xl">Ready to build your documentation?</h2>
+                    <p>You can find the full documentation on <a href="https://statamic.com/starter-kits/arrowtide/dok-documentation">the marketplace</a>.</p>
+                </div>
+                
+                <div class="grid sm:grid-cols-2 gap-5 mt-20 max-w-70 sm:max-w-120 mx-auto">
+                    <a class="px-5 py-3 inline-block bg-accent font-medium text-white transition rounded-md hover:bg-accent/90" href="/example/1.x">Get Started</a>
+                    <a class="px-5 py-3 inline-block text-white rounded-md hover:bg-white/5 transition" href="https://statamic.com/starter-kits/arrowtide/dok-documentation" target="_blank">View on Statamic</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+{{ partial:layout/footer }}

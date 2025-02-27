@@ -1,0 +1,67 @@
+<header class="py-4 sm:py-5 w-full border-b border-black/10 dark:border-white/10">
+    <div class="container">
+        {{ url = {project:latest_stable_version_url} }}
+
+        <div class="flex justify-between">
+
+            {{# Logo #}}
+            <div class="w-full h-5 sm:h-7 flex max-w-[10rem] items-center">
+                {{ project }}
+                    <a href="{{ url }}" class="size-full">
+                        {{ svg :src="logo" class="h-full w-auto {logo_class} { logo_dark ?= 'dark:hidden' }" }} 
+            
+                        {{ if logo_dark }}
+                            {{ svg :src="logo_dark" class="h-full w-auto hidden dark:block {logo_class}" }} 
+                        {{ /if }}
+            
+                        <span class="sr-only">Home</span>
+                    </a>
+                {{ /project }}
+            </div>
+    
+            {{# Desktop navigation #}}
+            <menu class="gap-6 hidden lg:flex">
+                {{ nav handle="primary_navigation" }}
+                    <li class="text-xs text-text transition hover:bg-black/4 dark:hover:bg-white/2 hover:text-text-focus px-4 py-2 rounded-lg">
+                        <a href="{{ url }}">
+                            {{ title }}
+                        </a>
+                    </li>
+                {{ /nav }}
+            </menu>
+
+            {{# Button trigger for the mobile navigation drawer #}}
+            <button class="flex items-center gap-2 text-text cursor-pointer lg:hidden" x-data @click="$dispatch('open-main-navigation')"> 
+                {{ svg src="dots-three-vertical" class="size-6 text-text-strong" }}
+                <span class="sr-only">Menu</span>
+            </button>
+
+            {{# Mobile navigation drawer #}}
+            {{ push:popovers }}
+                {{ partial:components/drawer name="main-navigation" }}
+                    {{ slot:content }}
+                        <div class="p-10 pb-15">
+                            <div class="flex flex-col grow transition duration-1000 starting:opacity-0 starting:translate-y-1">
+                                <h2 class="text-lg mb-0 text-text-strong font-medium mt-5">Menu</h2>
+                                {{ partial:components/separator class="mb-4 mt-3" }}
+                
+                                <div class="flex flex-col grow w-full max-w-4xl mx-auto">
+                                    <menu class="flex flex-col gap-2">
+                                        {{ nav handle="primary_navigation" }}
+                                            <li>
+                                                <a href="{{ url }}" class="py-2 text-text text-sm hover:text-text-strong block">
+                                                    {{ title }}
+                                                </a>
+                                            </li>
+                                        {{ /nav }}
+                                    </menu>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    {{ /slot:content }}
+                {{ /partial:components/drawer }}
+            {{ /push:popovers }}            
+        </div>
+    </div>
+</header>

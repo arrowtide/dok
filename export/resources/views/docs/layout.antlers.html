@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ site:short_locale }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ title ?? site:name }}</title>
+                
+        {{ vite src="resources/js/index.js|resources/css/site.css" }}
+
+        <script>
+            document.documentElement.classList.toggle(
+                'dark',
+                localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+            )
+        </script>
+
+    </head>
+    <body class="antialiased font-default bg-body-background">
+        {{ template_content }}
+
+        {{ stack:popovers }}
+        {{ stack:scripts }}
+
+        <script type="module">
+            Alpine.start();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,2 @@
+import './alpine';
+import './fonts';
