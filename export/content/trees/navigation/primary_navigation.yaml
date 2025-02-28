@@ -1,0 +1,16 @@
+tree:
+  -
+    id: 7739e8ab-7f57-4e67-9d15-ee3460438836
+    entry: home
+  -
+    id: 2f38458a-8d5c-41bf-a006-46cd7264333d
+    entry: 6b840926-cefd-4f71-b327-1ab3a0c2d5ca
+    title: Example
+  -
+    id: 67ce67cd-fda4-4493-a413-82dd636988e8
+    entry: 6b840926-cefd-4f71-b327-1ab3a0c2d5ca
+    title: Example
+  -
+    id: 22ab0bb6-d69b-499d-b02e-863bec7885ad
+    entry: 6b840926-cefd-4f71-b327-1ab3a0c2d5ca
+    title: Example

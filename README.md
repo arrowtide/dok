@@ -5,16 +5,16 @@ A beautiful documentation starter kit.
 * AlpineJS
 * Light & Dark theme
 * Easily create **new themes** with css variables
-* [**Remix Icons**](https://remixicon.com/) used as icons
+* [**Phosphor Icons**](https://phosphoricons.com) used as icons
 * Add an unlimited amount of **projects**
 * Unlimited **versions** per project
 * Fully **accessible**
-* Built for **unparralelled loading times**
+* Built for **fast loading times**
 * Simple progressive **View Transitions**
 * **Highly customisable** typography styles
 * Host your content on **Statamic** or **Github**
 * Sync from GitHub, even from multiple **repositories** and **organisations**.
-* Sync **manually**, on a **shedule**, or even through a **webhook**. 
+* Sync via **control panel**, on a **command**
 * **Permalink** and **Table of contents** markdown extensions preinstalled.
 * Shiki for **code highlighting**
 
@@ -38,7 +38,8 @@ Dok supports the latest versions of all major browsers. We use progressive enhan
 ### Compiling Assets
 By default, we use a simple Vite configuration that comes with every new Statamic site when using the CLI tool so you should feel right at home.
 
-`npm run dev` - Watches your content, rebuilds, and refreshes your browser so you can instantly see the changes. 
+`npm run dev` - Watches your content, rebuilds, and refreshes your browser so you can instantly see the changes.
+
 `npm run build` - Build for production
 
 
@@ -49,7 +50,7 @@ By default, we use a simple Vite configuration that comes with every new Statami
 Get up and running in an instant with the Statamic CLI tool. This will install a fresh Statamic instance with Dok installed. 
 
 ```bash
-statamic new my-site arrowtide/dok
+statamic new mysite arrowtide/dok
 ```
 
 **Installing into an existing site**

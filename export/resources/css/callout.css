@@ -26,36 +26,36 @@
 }
 
 .callout-important {
-    --callout-background: --alpha(var(--color-indigo-500), 5%);
-    --callout-border: --alpha(var(--color-indigo-500), 15%);
-    --callout-header-content: var(--color-indigo-500);
+    --callout-background: --alpha(var(--color-indigo-500) / 5%);
+    --callout-border: --alpha(var(--color-indigo-500) / 15%);
+    --callout-header-content: var(--color-indigo-400);
     --callout-body-content: inherit;
 }
 
 .callout-caution {
-    --callout-background: --alpha(var(--color-rose-500), 5%);
-    --callout-border: --alpha(var(--color-rose-500), 15%);
-    --callout-header-content: var(--color-rose-500);
+    --callout-background: --alpha(var(--color-rose-500) / 5%);
+    --callout-border: --alpha(var(--color-rose-500) / 15%);
+    --callout-header-content: var(--color-rose-400);
     --callout-body-content: inherit;
 }
 
 .callout-note {
-    --callout-background: --alpha(var(--color-cyan-500), 5%);
-    --callout-border: --alpha(var(--color-cyan-500), 15%);
-    --callout-header-content: var(--color-cyan-500);
+    --callout-background: --alpha(var(--color-cyan-500) / 5%);
+    --callout-border: --alpha(var(--color-cyan-500) / 15%);
+    --callout-header-content: var(--color-cyan-400);
     --callout-body-content: inherit;
 }
 
 .callout-tip {
-    --callout-background: --alpha(var(--color-teal-500), 5%);
-    --callout-border: --alpha(var(--color-teal-500), 15%);
-    --callout-header-content: var(--color-teal-500);
+    --callout-background: --alpha(var(--color-teal-500) / 5%);
+    --callout-border: --alpha(var(--color-teal-500) / 15%);
+    --callout-header-content: var(--color-teal-400);
     --callout-body-content: inherit;
 }
 
 .callout-warning {
-    --callout-background: --alpha(var(--color-yellow-500), 5%);
-    --callout-border: --alpha(var(--color-yellow-500), 15%);
-    --callout-header-content: var(--color-yellow-500);
+    --callout-background: --alpha(var(--color-yellow-500) / 5%);
+    --callout-border: --alpha(var(--color-yellow-500) / 15%);
+    --callout-header-content: var(--color-yellow-400);
     --callout-body-content: inherit;
 }

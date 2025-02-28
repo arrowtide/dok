@@ -64,6 +64,7 @@ tabs:
               type: select
               display: Label
               instructions: 'A label only used in the frontend to help users better understand the type of this release. Labels are shown in some areas next to the version.'
+              clearable: true
           -
             handle: content_is_computed
             field:

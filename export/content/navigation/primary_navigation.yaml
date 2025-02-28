@@ -1,0 +1,5 @@
+title: 'Primary Navigation'
+collections:
+  - example_v1
+  - pages
+max_depth: 5

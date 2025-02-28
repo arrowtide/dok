@@ -1,34 +1,6 @@
 @import 'tailwindcss';
-@import 'prose';
-@import 'callout' layer(base);
-
-/* @plugin '@tailwindcss/typography'; */
-
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-border, currentColor);
-  }
-
-  [x-cloak] {
-		display: none !important;
-	}
-
-  html {
-    scroll-behavior: smooth;
-
-    @media (min-width: theme(--breakpoint-lg)) {
-      overscroll-behavior: none;
-    }
-  }
-
-  @view-transition {
-    navigation: auto;
-  }
-}
+@import './prose.css';
+@import './callout.css' layer(base);
 
 @variant dark (&:where(.dark, .dark *));
 
@@ -54,91 +26,118 @@
   --color-midnight-900: oklch(21% 0.02 283);
   --color-midnight-950: oklch(20% 0.02 283);
 
-  --color-midlight-50: oklch(98% 0.03 283);
-  --color-midlight-100: oklch(96% 0.03 283);
-  --color-midlight-200: oklch(94% 0.03 283);
-  --color-midlight-300: oklch(90% 0.03 283);
-  --color-midlight-400: oklch(83% 0.03 283);
-  --color-midlight-500: oklch(78% 0.03 283);
-  --color-midlight-600: oklch(74% 0.03 283);
-  --color-midlight-700: oklch(67% 0.03 283);
-  --color-midlight-800: oklch(60% 0.03 283);
-  --color-midlight-900: oklch(49% 0.03 283);
-  --color-midlight-950: oklch(42% 0.03 283);
+  --color-moon-50: oklch(98% 0.03 283);
+  --color-moon-100: oklch(96% 0.03 283);
+  --color-moon-200: oklch(94% 0.03 283);
+  --color-moon-300: oklch(90% 0.03 283);
+  --color-moon-400: oklch(83% 0.03 283);
+  --color-moon-500: oklch(78% 0.03 283);
+  --color-moon-600: oklch(74% 0.03 283);
+  --color-moon-700: oklch(67% 0.03 283);
+  --color-moon-800: oklch(60% 0.03 283);
+  --color-moon-900: oklch(49% 0.03 283);
+  --color-moon-950: oklch(42% 0.03 283);
 
-  --color-accent: var(--color-sky-500); 
-  --color-text: var(--color-midlight-900);
+  --color-accent: var(--color-cyan-500); 
+  --color-text: var(--color-moon-900);
   --color-text-strong: var(--color-midnight-500);
   --color-text-focus: var(--color-midnight-800);
-  --color-border:  var(--color-midlight-300);
+  --color-border:  var(--color-moon-300);
 
-  --color-sidebar-text: var(--color-midlight-800);
+  --color-sidebar-text: var(--color-moon-800);
   --color-sidebar-text-focus: var(--color-midnight-100);
-  --color-sidebar-title: var(--color-midlight-900);
+  --color-sidebar-title: var(--color-moon-900);
   --color-sidebar-title-focus: var(--color-midnight-100);
 
-  --color-body-background: var(--color-midlight-50);
+  --color-body-background: var(--color-moon-50);
 
-  --color-popover-background: var(--color-midlight-50);
-  --color-popover-background-focus: var(--color-midlight-200);
+  --color-popover-background: var(--color-moon-50);
+  --color-popover-background-focus: var(--color-moon-200);
 }
 
-:root {
-  --separator: var(--color-black);
-
-
-  @media (min-width: theme(--breakpoint-sm)) {
-    --spacing-gutter: 3rem;
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border, currentColor);
   }
 
-  @media (min-width: theme(--breakpoint-lg)) {
-    --spacing-gutter: 4rem;
+  [x-cloak] {
+		display: none !important;
+	}
+
+  html {
+    scroll-behavior: smooth;
+
+    @media (min-width: theme(--breakpoint-lg)) {
+      overscroll-behavior: none;
+    }
   }
 
-  @media (min-width: theme(--breakpoint-xl)) {
-    --spacing-sidebar-width: calc(var(--spacing) * 64);
+  @view-transition {
+    navigation: auto;
   }
 
-  @media (min-width: theme(--breakpoint-2xl)) {
-    --spacing-gutter: 6rem;
+
+  :root {
+    --separator: var(--color-black);
+    --prose-pre-background: var(--color-midnight-100);
+  
+    @media (min-width: theme(--breakpoint-sm)) {
+      --spacing-gutter: 3rem;
+    }
+  
+    @media (min-width: theme(--breakpoint-lg)) {
+      --spacing-gutter: 4rem;
+    }
+  
+    @media (min-width: theme(--breakpoint-xl)) {
+      --spacing-sidebar-width: calc(var(--spacing) * 64);
+    }
+  
+    @media (min-width: theme(--breakpoint-2xl)) {
+      --spacing-gutter: 6rem;
+    }
   }
-}
-
-.dark:root {
-  --color-text: #9DA1B6;;
-  --color-text-strong: var(--color-white);
-  --color-text-focus: var(--color-white);
-  --color-border: var(--color-midnight-100);
-
-  --color-sidebar-text: var(--color-text);
-  --color-sidebar-text-focus: var(--color-text-focus);
-  --color-sidebar-title: var(--color-midlight-200);
-  --color-sidebar-title-focus: var(--color-white);
-
-  --color-body-background: var(--color-midnight-800);
-
-  --color-popover-background: var(--color-midnight-500);
-  --color-popover-background-focus: var(--color-midnight-300);
-
-  --prose-color: var(--color-midlight-600);
-  --prose-strong-color: var(--color-midlight-400);
-  --prose-headings-color: var(--color-midlight-100);
-  --prose-quote-color: var(--color-midlight-400);
-  --prose-quote-border-color: var(--color-midnight-300);
-  --prose-code-background: var(--color-midnight-400);
-  --prose-pre-background: var(--color-midnight-400);
-  --prose-tables-header-color: var(--color-white);
-  --prose-tables-border-color: var(--color-midnight-100);
-  --prose-hr-background: var(--color-midnight-300);
-
-  --separator: var(--color-white);
-} 
-
+  
+  .dark:root {
+    --color-text: var(--color-moon-700);
+    --color-text-strong: var(--color-white);
+    --color-text-focus: var(--color-white);
+    --color-border: var(--color-midnight-100);
+  
+    --color-sidebar-text: var(--color-text);
+    --color-sidebar-text-focus: var(--color-text-focus);
+    --color-sidebar-title: var(--color-moon-200);
+    --color-sidebar-title-focus: var(--color-white);
+  
+    --color-body-background: var(--color-midnight-800);
+  
+    --color-popover-background: var(--color-midnight-500);
+    --color-popover-background-focus: var(--color-midnight-300);
+  
+    --prose-a-color: var(--color-cyan-500);
+    --prose-a-hover-color: var(--color-moon-300);
+    --prose-color: var(--color-moon-600);
+    --prose-strong-color: var(--color-moon-400);
+    --prose-headings-color: var(--color-moon-100);
+    --prose-quote-color: var(--color-moon-400);
+    --prose-quote-border-color: var(--color-midnight-300);
+    --prose-code-background: var(--color-midnight-400);
+    --prose-tables-header-color: var(--color-white);
+    --prose-tables-border-color: var(--color-midnight-100);
+    --prose-hr-background: var(--color-midnight-300);
+  
+    --separator: var(--color-white);
+  }   
+} /* end @layer base */
 
 /* 
-  Seperator
+  Separator
   
-  The seperator is a gradient that can be used to separate 
+  The separator is a component that can be used to separate 
   elements on the page from one another.
 */
 @utility separator {
@@ -162,6 +161,11 @@
   z-index: 30;
 }
 
+/* 
+  Container
+  
+  The default class used to contain and center content.
+*/
 @utility container {
   max-width: 1440px;
   padding-left: var(--spacing-gutter);
@@ -170,65 +174,68 @@
   width: 100%;
 }
 
-/* 
-  Markdown Permalinks
-  
-  If you have enabled the markdown extension and want to change 
-  the style of your permalinks, you can do so here.
-*/
-.prose {
-  & h1, h2, h3, h4 {
-    position: relative;
-  }
-
-  & .heading-permalink {
-    position: absolute;
-    left: calc((var(--spacing) * 4.5) * -1);
-    font-size: 0.7em;
-    line-height: 2.7;
-    scroll-margin: --spacing(38);
-
-    &:focus-visible {
-      outline: none;
+@layer components {
+  /* 
+    Markdown Permalinks
+    
+    If you have enabled the markdown extension and want to change 
+    the style of your permalinks, you can do so here.
+  */
+  .prose {
+    & h1, h2, h3, h4 {
+      position: relative;
     }
 
-    @media (min-width: theme(--breakpoint-lg)) {
-      font-size: 0.8em;
-      line-height: 2.2;
-      left: calc((var(--spacing) * 6) * -1);
+    & .heading-permalink {
+      position: absolute;
+      left: calc((var(--spacing) * 4.5) * -1);
+      font-size: 0.7em;
+      line-height: 2.7;
+      scroll-margin: --spacing(38);
+      text-decoration: none;
+
+      &:focus-visible {
+        outline: none;
+      }
+
+      @media (min-width: theme(--breakpoint-lg)) {
+        font-size: 0.8em;
+        line-height: 2.2;
+        left: calc((var(--spacing) * 6) * -1);
+      }
     }
   }
-}
 
-/* 
-  Markdown Table Of Contents
-  
-  If you have enabled the Table of Contents extension and want to change 
-  the style of your table of contents, you can do so here.
-*/
-.table-of-contents {
-  padding-left: calc(var(--spacing) * 2.5);
-  font-size: 0.9rem;
+  /* 
+    Markdown Table Of Contents
+    
+    If you have enabled the Table of Contents extension and want to change 
+    the style of your table of contents, you can do so here.
+  */
+  .table-of-contents {
+    padding-left: calc(var(--spacing) * 2.5);
+    font-size: 0.9rem;
 
-  & a:before  {
-    content: "#";
-    color: var(--color-accent);
-    margin-right: calc(var(--spacing) * 2);
-  }
+    & a:before  {
+      content: "#";
+      color: var(--prose-a-color);
+      margin-right: calc(var(--spacing) * 2);
+    }
 
-  & ul {
-    padding-left: calc(var(--spacing) * 5)
-  }
+    & ul {
+      padding-left: calc(var(--spacing) * 5)
+    }
 
-  & a {
-    color: var(--color-text);
-    display: block;
-    padding-top: calc(var(--spacing) * 1.5);
-    padding-bottom: calc(var(--spacing) * 1.5);
-    padding-right: calc(var(--spacing) * 2);
+    & a {
+      color: var(--color-text);
+      display: block;
+      padding-top: calc(var(--spacing) * 1.5);
+      padding-bottom: calc(var(--spacing) * 1.5);
+      padding-right: calc(var(--spacing) * 2);
 
-    &:hover {
-      color: var(--color-text-focus);
+      &:hover {
+        color: var(--color-text-focus);
+      }
     }
   }
-}
+} /* end @layer components */

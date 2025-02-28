@@ -24,7 +24,7 @@ class GitHubSyncController extends Controller
 
         $this->ensureConfigExistsForName($name);
 
-        $resource = config('github-sync.paths')[$name];
+        $resource = config('documentation.resources')[$name];
 
         $url = "https://api.github.com/repos/{$resource['repo']}/git/trees/{$resource['branch']}?recursive=1";
 
@@ -150,11 +150,11 @@ class GitHubSyncController extends Controller
      */
     private function ensureConfigExistsForName($name)
     {
-        if (! isset(config('github-sync.paths')[$name])) {
+        if (! isset(config('documentation.resources')[$name])) {
             throw new \Exception("Cannot find resource: {$name}");
         }
 
-        $resource = config('github-sync.paths')[$name];
+        $resource = config('documentation.resources')[$name];
 
         if (! $resource['token'] || ! $resource['repo'] || ! $resource['branch']) {
             throw new \Exception("Missing some configuration for: {$name}");

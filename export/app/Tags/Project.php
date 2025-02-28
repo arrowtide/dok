@@ -2,7 +2,6 @@
 
 namespace App\Tags;
 
-
 use Statamic\Facades\Collection;
 use Statamic\Facades\Entry;
 use Statamic\Facades\Site;
@@ -10,7 +9,6 @@ use Statamic\Tags\Tags;
 
 class Project extends Tags
 {
-
     public function index()
     {
         if (! isset($this->context['collection'])) {
@@ -62,9 +60,9 @@ class Project extends Tags
 
     /**
      * Gets the project information from the collection that is retrieved
-     * from the current context. 
+     * from the current context.
      *
-     * @param Collection $collection
+     * @param  Collection  $collection
      * @return array
      */
     private function getRelease($collection)
@@ -89,26 +87,27 @@ class Project extends Tags
             'latest_stable_version' => $parent->latest_stable_release ?? null,
             'latest_stable_version_url' => $this->getLatestStableVersionUrl($parent),
             'versions' => $this->getProjectVersions($parent),
-            'has_versions' => $parent->flattenedPages()->count() > 1
+            'has_versions' => $parent->flattenedPages()->count() > 1,
         ];
     }
 
     private function getLatestStableVersionUrl($parent)
     {
+        if (! $parent->latest_stable_release) {
+            throw new \Exception('You must have a latest stable release. Go to your project entry in the Releases collection and add one.');
+        }
+
         return Entry::find(
             Collection::findByHandle($parent->latest_stable_release->version_collection->handle())
                 ->structure()
                 ->in(Site::current()->handle())
                 ->tree()[0]['entry']
         )
-        ->url();
+            ->url();
     }
-    
+
     /**
      * Given a parent page, this will return an array of its children
-     *
-     * @param \Statamic\Structures\Page $parent
-     * @return array
      */
     private function getProjectChildren(\Statamic\Structures\Page $parent): array
     {
@@ -119,12 +118,9 @@ class Project extends Tags
             })
             ->toArray();
     }
-    
+
     /**
      * Given a parent page, this will return an array of its childrens versions
-     *
-     * @param \Statamic\Structures\Page $parent
-     * @return array
      */
     private function getProjectVersions(\Statamic\Structures\Page $parent): array
     {
@@ -139,7 +135,7 @@ class Project extends Tags
                     'url' => Entry::find($releaseCollectionHomeId)?->url(),
                     'label' => $release->get('label'),
                 ];
-                
+
             })
             ->reverse()
             ->values()

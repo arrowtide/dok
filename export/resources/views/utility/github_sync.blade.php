@@ -13,7 +13,7 @@
     </header>
     
     <ul class="grid gap-4">
-        @foreach (config('github-sync.paths') as $name => $resource)
+        @foreach (config('documentation.resources') as $name => $resource)
             <li class="card">
                 <h2 class="font-bold mb-5"><code>{{ $name }}</code></h2>
 

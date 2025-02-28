@@ -1,12 +1,10 @@
 <!doctype html>
-<html lang="{{ site:short_locale }}">
+<html lang="{{ site:short_locale }}" class="bg-body-background">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ title ?? site:name }}</title>
-                
-        {{ vite src="resources/js/index.js|resources/css/site.css" }}
 
         <script>
             document.documentElement.classList.toggle(
@@ -15,9 +13,13 @@
             )
         </script>
 
+        {{ vite src="resources/css/site.css" }}
     </head>
-    <body class="antialiased font-default bg-body-background">
+    <body class="antialiased font-default">
         {{ template_content }}
+
+
+        {{ vite src="resources/js/index.js" }}
 
         {{ stack:popovers }}
         {{ stack:scripts }}

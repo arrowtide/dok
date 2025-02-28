@@ -5,32 +5,27 @@ Dok makes it easy to use GitHub as the source for your documentation. You can ev
 You can even sync content from _different_ owners and organisations as long as your personal access token has the correct permissions. 
 
 ### Prerequisites
-* Assumes you have already created a GitHub personal access token. [Learn how to create a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
+* Assumes you have already created a GitHub personal access token. [Learn how to create a personal access token.](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token)
 
 ---
 
 #### 1) Add the fieldset to your blueprint
 Dok comes with a fieldset called `content_github`. On collections you want to use GitHub as the source, you will need to add that fieldset to the corrosponding collection.
 
-#### 2) Update your config inside of `github_sync.php`
+#### 2) Update your config inside of `documentation.php`
 Add a new array item to your `paths` array. The below is an example. You may need to clear your config cache after changing this. 
 
 ```php
-'documentation' => [
-	 // Your reposistory
-	 'repo' => 'owner/repo',
+'resources' => [
+	'MonsterSEO' => [
+		'repo' => 'owner/repo',
+		'branch' => 'main',
 
-	 // The branch to get
-	 'branch' => 'main',
-
-	 // Will sync to content/docs/documentation
-	 'destination' => 'documentation',
-
-	 // An array of folders to get. The below would ONLY sync the 'docs' folder from the main branch.
-	 'content' => ['docs'],
-
-	 // The env variable for your Github token. 
-	 'token' => env('GITHUB_SYNC_TOKEN'),
+		// If you want to sync just these folders 
+		// from within the repo.
+		'content' => ['docs'],
+		'token' => env('GITHUB_SYNC_TOKEN'),
+	],
 ],
 ```
 	
@@ -116,3 +111,30 @@ Simply add a redirect for that URL in the plugins settings page that points to t
 Dok doesn't come with search configured. There are so many different ways to do search we didn't want to package one. [Docsearch by Algolia](https://docsearch.algolia.com/) is the quickest and easiest to set up on your site.
 
 If you do want to include your own search, you can uncomment the search button inside `resources/views/docs/partials/document/header.antlers.html`. This gives you an idea of styles you can use for the button, or you can change it to an input if you run your own search. 
+
+## Code Highlighting
+Dok comes packaged with [spatie/commonmark-shiki-highlighter](https://github.com/spatie/commonmark-shiki-highlighter) for easy code highlighting. You can of course swap this out for another package like Torchlight. 
+
+Shiki runs every page load, so it's recommended to have some sort of static caching. [Learn more about static caching in Statamic](https://statamic.dev/static-caching). 
+
+Alternativly you may choose to use the [`{{ cache }}`](https://statamic.dev/tags/cache) tags instead. 
+
+
+### Theming 
+
+You can change your theme by changing the `theme` parameter inside of your `AppServiceProvider.php`
+```php
+Markdown::addExtension(function () {
+    return new HighlightCodeExtension(theme: 'material-theme-lighter');
+});
+```
+
+[View a list of available themes.
+](https://github.com/shikijs/textmate-grammars-themes/tree/main/packages/tm-themes)
+[TOC]
+
+
+## Markdown
+Dok comes with two commonmark extensions pre-installed. These are initiated inside of `AppServiceProvider.php` and their config is managed at `config/statamic/markdown.php`.
+
+You can reference the commonmark documentation for extra information on either the [Table of Contents](https://commonmark.thephpleague.com/2.6/extensions/table-of-contents/) or [Heading Permalink](https://commonmark.thephpleague.com/2.6/extensions/heading-permalinks/) extensions.

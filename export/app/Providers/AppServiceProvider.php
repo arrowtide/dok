@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
+use Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension;
 use Statamic\Facades\Collection;
 use Statamic\Facades\Entry;
 use Statamic\Facades\Markdown;
@@ -33,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
 
         Markdown::addExtension(function () {
             return new TableOfContentsExtension;
+        });
+
+        Markdown::addExtension(function () {
+            return new HighlightCodeExtension(theme: 'synthwave-84');
         });
 
         Utility::extend(function () {

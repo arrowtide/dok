@@ -51,12 +51,6 @@ tabs:
               type: text
               display: Class
               instructions: 'Apply CSS classes to this svg finetune the output style of the logos.'
-          -
-            handle: logo_title
-            field:
-              type: text
-              display: Title
-              instructions: 'The accessible name for this link.'
   sidebar:
     display: Sidebar
     sections:

@@ -4,14 +4,21 @@ export_paths:
   - app/Http/Controllers/GitHubSyncController.php
   - app/Providers/AppServiceProvider.php
   - app/Tags/Project.php
+  - app/Tags/Release.php
+  - config/statamic/markdown.php
+  - public/assets/example_project
+  - content/assets
   - content/collections/pages.yaml
   - content/collections/releases.yaml
   - content/collections/pages/home.md
   - content/collections/example_v1
   - content/collections/releases/example_v1.md
+  - content/collections/releases/example_project.md
   - content/collections/example_v1.yaml
   - content/navigation/example_v1.yaml
   - content/trees/navigation/example_v1.yaml
+  - content/navigation/primary_navigation.yaml
+  - content/trees/navigation/primary_navigation.yaml
   - resources/blueprints
   - resources/css
   - resources/js
@@ -19,7 +26,6 @@ export_paths:
   - resources/fieldsets
   - resources/views
   - package.json
-  - postcss.config.js
   - vite.config.js
 modules:
   required:

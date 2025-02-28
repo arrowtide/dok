@@ -49,7 +49,8 @@
         --prose-h4-leading: var(--prose-leading);
         --prose-h4-weight: var(--prose-headings-weight);
 
-        --prose-a-color: var(--color-sky-500);
+        --prose-a-color: var(--color-sky-700);
+        --prose-a-hover-color: var(--color-black);
         --prose-a-weight: var(--prose-weight);
 
         --prose-pre-color: var(--prose-color);
@@ -163,10 +164,14 @@
     .prose :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
         color: var(--prose-a-color);
         font-weight: var(--prose-a-weight);
+        text-decoration: underline;
+        text-decoration-style: dotted;
 
-        &:hover {
-            text-decoration: underline;
+        &:hover,
+        &:focus {
+            opacity: 0.8;
         }
+
     }
 
     .prose :where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
