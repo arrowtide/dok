@@ -73,7 +73,7 @@ YAML;
     {
         $envPath = base_path('.env');
 
-        if (!File::exists($envPath)) {
+        if (File::exists($envPath)) {
             file_put_contents($envPath, "\nSHIKI_ENABLED=false", FILE_APPEND);
             $console->line('Added SHIKI_ENABLED to .env');
         }

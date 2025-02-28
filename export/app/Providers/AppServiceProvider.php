@@ -36,9 +36,9 @@ class AppServiceProvider extends ServiceProvider
             return new TableOfContentsExtension;
         });
 
-        if (env('SHIKI_ENABLED', false)) {
+        if (env('SHIKI_ENABLED', true)) {
             Markdown::addExtension(function () {
-                return new HighlightCodeExtension(theme: 'synthwave-84');
+                return new HighlightCodeExtension(theme: 'material-theme-palenight');
             });
         }
 
