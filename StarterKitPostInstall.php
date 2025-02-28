@@ -8,9 +8,10 @@ class StarterKitPostInstall
     {
         $this->generateDocumentationConfig($console);
         $this->generateReleaseCollectionTree($console);
+        $this->addShikiEnv($console);
     }
 
-    public function generateDocumentationConfig($console)
+    protected function generateDocumentationConfig($console)
     {
         $configPath = config_path('documentation.php');
 
@@ -47,7 +48,7 @@ PHP;
         $console->line('Placed config/documentation.php');
     }
 
-    public function generateReleaseCollectionTree($console) 
+    protected function generateReleaseCollectionTree($console) 
     {
         $path = base_path('content/trees/collections/releases.yaml');
         $content = <<<YAML
@@ -66,7 +67,15 @@ YAML;
         }
 
         $console->line('Placed content/trees/collections/releases.yaml');
-
     }
 
+    protected function addShikiEnv($console)
+    {
+        $envPath = base_path('.env');
+
+        if (!File::exists($envPath)) {
+            file_put_contents($envPath, "\nSHIKI_ENABLED=false", FILE_APPEND);
+            $console->line('Added SHIKI_ENABLED to .env');
+        }
+    }
 }

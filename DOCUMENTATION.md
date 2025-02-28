@@ -110,14 +110,17 @@ Simply add a redirect for that URL in the plugins settings page that points to t
 ## Search
 Dok doesn't come with search configured. There are so many different ways to do search we didn't want to package one. [Docsearch by Algolia](https://docsearch.algolia.com/) is the quickest and easiest to set up on your site.
 
-If you do want to include your own search, you can uncomment the search button inside `resources/views/docs/partials/document/header.antlers.html`. This gives you an idea of styles you can use for the button, or you can change it to an input if you run your own search. 
-
 ## Code Highlighting
 Dok comes packaged with [spatie/commonmark-shiki-highlighter](https://github.com/spatie/commonmark-shiki-highlighter) for easy code highlighting. You can of course swap this out for another package like Torchlight. 
 
-Shiki runs every page load, so it's recommended to have some sort of static caching. [Learn more about static caching in Statamic](https://statamic.dev/static-caching). 
+Shiki runs every page load, so it's recommended to have some sort of static caching. [Learn more about static caching in Statamic](https://statamic.dev/static-caching). Alternativly you may choose to use the [`{{ cache }}`](https://statamic.dev/tags/cache) tags instead. 
 
-Alternativly you may choose to use the [`{{ cache }}`](https://statamic.dev/tags/cache) tags instead. 
+Dok adds an environment variable called `SHIKI_ENABLED` that you can use to toggle this feature.
+
+```
+SHIKI_ENABLED=true
+```
+
 
 
 ### Theming 
@@ -131,7 +134,6 @@ Markdown::addExtension(function () {
 
 [View a list of available themes.
 ](https://github.com/shikijs/textmate-grammars-themes/tree/main/packages/tm-themes)
-[TOC]
 
 
 ## Markdown

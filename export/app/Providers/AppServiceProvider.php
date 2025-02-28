@@ -36,9 +36,11 @@ class AppServiceProvider extends ServiceProvider
             return new TableOfContentsExtension;
         });
 
-        Markdown::addExtension(function () {
-            return new HighlightCodeExtension(theme: 'synthwave-84');
-        });
+        if (env('SHIKI_ENABLED', false)) {
+            Markdown::addExtension(function () {
+                return new HighlightCodeExtension(theme: 'synthwave-84');
+            });
+        }
 
         Utility::extend(function () {
             Utility::register('github_sync')
