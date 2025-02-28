@@ -87,7 +87,7 @@ For this example, let's say we've just built a new plugin called `Monster SEO` a
 
 4) **Add a new release**
 
-	Add a new release in the control panel by going to the **Releases** collection. Add a new entry and fill in all of your details. If you're creating an entirely new project, you can type into the `Project` select field to add a new name.
+	Add a new release in the control panel by going to the **Releases** collection. Add a new entry and fill in all of your details.
 
 
 ## Redirecting
