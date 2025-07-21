@@ -18,7 +18,7 @@
     x-bind="eventListeners"
 >
     <div 
-        class="fixed flex flex-col {{ if height == 'full' }}min-h-dvh{{ /if }} {{ $position_class }} max-h-dvh w-dvw max-w-lg p-4 sm:pl-10 sm:p-10 z-50 translate-3d transition duration-200 pointer-events-none"
+        class="fixed flex flex-col {{ if height == 'full' }}min-h-dvh{{ /if }} {{ $position_class }} max-h-dvh w-dvw max-w-lg p-4 sm:pl-10 sm:p-10 z-50 translate-3d transition duration-200 pointer-events-none scrollbar-default"
         x-transition:enter-start="{{ $transition_hidden }}"
         x-transition:enter-end="{{ $transition_visible }}"
         x-transition:leave-start="{{ $transition_visible }}"

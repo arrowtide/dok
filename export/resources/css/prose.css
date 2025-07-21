@@ -14,7 +14,6 @@
         --prose-p-leading: var(--prose-leading);
         --prose-p-tracking: var(--prose-tracking);
 
-
         --prose-strong-weight: 600;
         --prose-strong-color: var(--color-midnight-100);
 
@@ -66,6 +65,9 @@
         --prose-pre-radius: 0.3rem;
         --prose-pre-letter-spacing: var(--prose-tracking);
         --prose-pre-tab-size: 4;
+        --prose-pre-scrollbar-width: thin;
+        --prose-pre-scrollbar-track: transparent;
+        --prose-pre-scrollbar-thumb: var(--color-moon-900);
 
         --prose-code-color: var(--color-text);
         --prose-code-background: var(--color-midlight-200);
@@ -187,6 +189,8 @@
         padding-bottom: var(--prose-pre-padding-bottom);
         padding-left: var(--prose-pre-padding-left);
         tab-size: var(--prose-pre-tab-size);
+        scrollbar-width: var(--prose-pre-scrollbar-width);
+        scrollbar-color: var(--prose-pre-scrollbar-thumb) var(--prose-pre-scrollbar-track);
     }
 
     .prose :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
