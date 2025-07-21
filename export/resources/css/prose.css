@@ -5,7 +5,7 @@
         --prose-leading: 1.8;
         --prose-size: 1rem;
         --prose-weight: normal;
-        --prose-marker-color: var(--color-midlight-900);
+        --prose-marker-color: var(--color-moon-900);
         --prose-marker-weight: 500;
         --prose-color: var(--color-text);
 
@@ -53,7 +53,7 @@
         --prose-a-weight: var(--prose-weight);
 
         --prose-pre-color: var(--prose-color);
-        --prose-pre-background: var(--color-midlight-200);
+        --prose-pre-background: var(--color-moon-200);
         --prose-pre-size: 0.8888889em;
         --prose-pre-margin-top: calc(var(--spacing) * 6);
         --prose-pre-margin-bottom: calc(var(--spacing) * 6);
@@ -70,22 +70,22 @@
         --prose-pre-scrollbar-thumb: var(--color-moon-900);
 
         --prose-code-color: var(--color-text);
-        --prose-code-background: var(--color-midlight-200);
+        --prose-code-background: var(--color-moon-200);
         --prose-code-radius: 0.375rem;
         --prose-code-size: 0.8888889em;
         --prose-code-weight: var(--prose-weight);
         --prose-code-padding: 0.2em 0.4em;
 
         --prose-hr-height: 1px;
-        --prose-hr-background: var(--color-midlight-300);
+        --prose-hr-background: var(--color-moon-300);
         --prose-hr-margin: calc(var(--spacing) * 12);
 
         --prose-images-margin: calc(var(--spacing) * 10);
 
-        --prose-quote-color: var(--color-midlight-900);
+        --prose-quote-color: var(--color-moon-900);
         --prose-quote-weight: bold;
         --prose-quote-font-style: italic;
-        --prose-quote-border-color: var(--color-midlight-300);
+        --prose-quote-border-color: var(--color-moon-300);
         --prose-quote-margin: 1.6em;
 
         --prose-lists-margin: calc(var(--spacing) * 6);
@@ -97,7 +97,7 @@
         --prose-tables-size: 0.875em;
         --prose-tables-header-color: var(--color-black);
         --prose-tables-header-weight: 500;
-        --prose-tables-border-color: var(--color-midlight-300);
+        --prose-tables-border-color: var(--color-moon-300);
         --prose-tables-cell-padding: calc(var(--spacing) * 2);
         --prose-tables-cell-edge-padding: var(--prose-tables-cell-padding);
     }
