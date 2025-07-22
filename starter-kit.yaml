@@ -25,12 +25,13 @@ export_paths:
   - resources/svg
   - resources/fieldsets
   - resources/views
-  - package.json
   - vite.config.js
+export_as:
+  config/dok.export.php: config/dok.php
+  package.export.json: package.json
 modules:
   required:
     default: true
     prompt: false
     dependencies:
       alt-design/alt-redirect: dev-main
-      spatie/commonmark-shiki-highlighter: dev-main

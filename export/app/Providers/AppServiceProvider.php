@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
-use Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension;
 use Statamic\Facades\Collection;
 use Statamic\Facades\Entry;
 use Statamic\Facades\Markdown;
@@ -28,6 +27,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->registerMarkdownExtensions();
+        $this->registerShiki();
+        $this->registerTorchlightEngine();
+        $this->registerGitHubSyncUtility();
+        $this->registerComputedContent();
+    }
+
+    protected function registerMarkdownExtensions(): void
+    {
         Markdown::addExtension(function () {
             return new HeadingPermalinkExtension;
         });
@@ -35,13 +43,39 @@ class AppServiceProvider extends ServiceProvider
         Markdown::addExtension(function () {
             return new TableOfContentsExtension;
         });
+    }
 
-        if (env('SHIKI_ENABLED', true)) {
-            Markdown::addExtension(function () {
-                return new HighlightCodeExtension(theme: 'material-theme-palenight');
-            });
+    protected function registerShiki(): void
+    {
+        if (! config('dok.code_highlighting_enabled') || config('dok.code_highlighter') != 'shiki' || ! class_exists(\Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension::class)) {
+            return;
         }
 
+        Markdown::addExtension(function () {
+            return new \Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension(theme: 'material-theme-palenight');
+        });
+
+    }
+
+    protected function registerTorchlightEngine(): void
+    {
+        if (! config('dok.code_highlighting_enabled') || config('dok.code_highlighter') != 'torchlight-engine' || ! class_exists(\Torchlight\Engine\CommonMark\Extension::class)) {
+            return;
+        }
+
+        Markdown::addExtension(function () {
+            return new \Torchlight\Engine\CommonMark\Extension(theme: 'material-theme-palenight');
+        });
+
+        \Torchlight\Engine\Options::setDefaultOptionsBuilder(function () {
+            return new \Torchlight\Engine\Options(
+                lineNumbersEnabled: false,
+            );
+        });
+    }
+
+    protected function registerGitHubSyncUtility(): void
+    {
         Utility::extend(function () {
             Utility::register('github_sync')
                 ->view('utility.github_sync')
@@ -53,7 +87,10 @@ class AppServiceProvider extends ServiceProvider
                     $router->post('/', [GitHubSyncController::class, 'make'])->name('make');
                 });
         });
+    }
 
+    protected function registerComputedContent(): void
+    {
         $contentComputedCollections = collect(Entry::query()
             ->where('collection', 'releases')
             ->where('content_is_computed', true)

@@ -15,7 +15,7 @@ class StarterKitPostInstall
     {
         $configPath = config_path('documentation.php');
 
-        $content = <<<PHP
+        $content = <<<'PHP'
 <?php
 
 return [
@@ -41,17 +41,17 @@ return [
 
 PHP;
 
-        if (!File::exists($configPath)) {
+        if (! File::exists($configPath)) {
             File::put($configPath, $content);
         }
 
         $console->line('Placed config/documentation.php');
     }
 
-    protected function generateReleaseCollectionTree($console) 
+    protected function generateReleaseCollectionTree($console)
     {
         $path = base_path('content/trees/collections/releases.yaml');
-        $content = <<<YAML
+        $content = <<<'YAML'
 tree:
   -
     entry: 43637327-fa17-42d4-a0b8-2ebdc90a7638
@@ -61,7 +61,7 @@ tree:
 
 YAML;
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             File::ensureDirectoryExists(base_path('content/trees/collections'));
             File::put($path, $content);
         }
