@@ -8,12 +8,12 @@ breadcrumbs_separator_class: 'size-2 text-text opacity-80'
 {{ $release_home_url = {release:home_url} }}
 
 <div class="py-1 w-full border-b border-black/10 dark:border-white/10">
-    <div class="container"> 
+    <div class="container">
         <div class="flex items-center justify-between h-12 flex-wrap sm:flex-nowrap py-2">
 
             {{# The mobile button for the sidebar which includes the breadcrumbs #}}
             <div class="flex lg:hidden">
-                <button class="flex items-center gap-2 text-text cursor-pointer" x-data @click="$dispatch('open-docs-navigation')"> 
+                <button class="flex items-center gap-2 text-text cursor-pointer" x-data @click="$dispatch('open-docs-navigation')">
                     {{ svg src="hamburger" class="size-5 sm:size-6 text-text-strong" }}
                     <span class="sr-only">Menu</span>
 
@@ -68,7 +68,7 @@ breadcrumbs_separator_class: 'size-2 text-text opacity-80'
                 {{ /nav:breadcrumbs }}
             </ul>
 
-            {{ if {project:has_versions} }} 
+            {{ if {project:has_versions} }}
                 {{ partial:docs/partials/versions }}
             {{ /if }}
         </div>

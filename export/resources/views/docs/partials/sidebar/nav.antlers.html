@@ -8,15 +8,15 @@
                         {{ title }}
                     </button>
                 </h2>
-                <ul 
-                    class="flex flex-col" 
+                <ul
+                    class="flex flex-col"
 
                     {{ if ({children} | where('uri', {current_uri}) | count) == 1}}
                         x-init="active = '{{ $depth_1_index }}'"
                     {{ else }}
                         x-cloak
                     {{ /if }}
-                    x-show="active == `{{ $depth_1_index }}`" 
+                    x-show="active == `{{ $depth_1_index }}`"
                     x-collapse.duration.300
                     >
                     {{ children }}

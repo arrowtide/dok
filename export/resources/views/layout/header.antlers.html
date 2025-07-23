@@ -5,11 +5,11 @@
             {{# Logo #}}
             <div class="w-full h-5 sm:h-7 flex max-w-[10rem] items-center">
                 <a href="/" class="size-full">
-                    {{ svg src="logo" class="h-full w-auto text-white" }} 
+                    {{ svg src="logo" class="h-full w-auto text-white" }}
                     <span class="sr-only">Home</span>
                 </a>
             </div>
-    
+
             {{# Desktop navigation #}}
             <menu class="gap-6 hidden lg:flex">
                 {{ nav handle="primary_navigation" }}
@@ -22,7 +22,7 @@
             </menu>
 
             {{# Button trigger for the mobile navigation drawer #}}
-            <button class="flex items-center gap-2 text-text cursor-pointer lg:hidden" x-data @click="$dispatch('open-main-navigation')"> 
+            <button class="flex items-center gap-2 text-text cursor-pointer lg:hidden" x-data @click="$dispatch('open-main-navigation')">
                 {{ svg src="dots-three-vertical" class="size-6 text-text-strong" }}
                 <span class="sr-only">Menu</span>
             </button>
@@ -35,7 +35,7 @@
                             <div class="flex flex-col grow transition duration-1000 starting:opacity-0 starting:translate-y-1">
                                 <h2 class="text-lg mb-0 text-text-strong font-medium mt-5">Menu</h2>
                                 {{ partial:components/separator class="mb-4 mt-3" }}
-                
+
                                 <div class="flex flex-col grow w-full max-w-4xl mx-auto">
                                     <menu class="flex flex-col gap-2">
                                         {{ nav handle="primary_navigation" }}
@@ -46,13 +46,13 @@
                                             </li>
                                         {{ /nav }}
                                     </menu>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     {{ /slot:content }}
                 {{ /partial:components/drawer }}
-            {{ /push:popovers }}            
+            {{ /push:popovers }}
         </div>
     </div>
 </header>

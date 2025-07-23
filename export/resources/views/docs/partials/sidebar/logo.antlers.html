@@ -3,10 +3,10 @@
 <div class="w-full h-7 flex items-center mt-5 mb-12">
     {{ project }}
         <a href="{{ url }}" class="size-full">
-            {{ svg :src="logo" class="h-full w-auto {logo_class} { logo_dark ?= 'dark:hidden' }" }} 
+            {{ svg :src="logo" class="h-full w-auto {logo_class} { logo_dark ?= 'dark:hidden' }" }}
 
             {{ if logo_dark }}
-                {{ svg :src="logo_dark" class="h-full w-auto hidden dark:block {logo_class}" }} 
+                {{ svg :src="logo_dark" class="h-full w-auto hidden dark:block {logo_class}" }}
             {{ /if }}
 
             <span class="sr-only">Home</span>

@@ -14,7 +14,7 @@ document.addEventListener('alpine:init', function(event) {
 
                 this.copied = 'true';
                 this.text = 'Copied';
-                
+
             } catch (error) {
                 this.copied = 'error';
                 this.text = 'Error, could not copy to clipboard.';
@@ -27,7 +27,7 @@ document.addEventListener('alpine:init', function(event) {
                 setTimeout(() => {
                     this.copied = 'false';
                     this.text = 'Copy';
-                    
+
                     el.classList.remove('animate-shake');
                 }, 1250)
             }
