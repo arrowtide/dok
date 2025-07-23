@@ -177,6 +177,7 @@
     }
 
     .prose :where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+        position: relative;
         overflow-x: auto;
         font-size: var(--prose-pre-size);
         background-color: var(--prose-pre-background);

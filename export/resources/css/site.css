@@ -53,6 +53,18 @@
 
   --color-popover-background: var(--color-moon-50);
   --color-popover-background-focus: var(--color-moon-200);
+
+  --animate-shake: shake 0.2s ease-out 3;  
+    
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(-2px);
+    }
+    50% {
+      transform: translateX(2px);
+    }  
+  }
 }
 
 @layer base {
