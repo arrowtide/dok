@@ -9,9 +9,9 @@ class MarkdownCopyButton extends Modifier
     /**
      * Modify a value.
      *
-     * @param mixed  $value    The value to be modified
-     * @param array  $params   Any parameters used in the modifier
-     * @param array  $context  Contextual values
+     * @param  mixed  $value  The value to be modified
+     * @param  array  $params  Any parameters used in the modifier
+     * @param  array  $context  Contextual values
      * @return mixed
      */
     public function index($value, $params, $context)
@@ -22,7 +22,7 @@ class MarkdownCopyButton extends Modifier
         // Match <pre> that contains <code> anywhere inside (non-greedy)
         // and inject button before the closing </pre>
         return preg_replace_callback('/(<pre\b[^>]*>.*?<code\b[^>]*>.*?<\/code>.*?)(<\/pre>)/is', function ($matches) use ($buttonHtml) {
-            return $matches[1] . $buttonHtml . $matches[2];
+            return $matches[1].$buttonHtml.$matches[2];
         }, $value);
     }
 }

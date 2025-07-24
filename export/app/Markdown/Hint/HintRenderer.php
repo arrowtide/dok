@@ -10,7 +10,7 @@ use League\CommonMark\Util\HtmlElement;
 final class HintRenderer implements NodeRendererInterface
 {
     /**
-     * @param Hint $node
+     * @param  Hint  $node
      *
      * {@inheritDoc}
      *
@@ -24,7 +24,7 @@ final class HintRenderer implements NodeRendererInterface
         isset($attrs['class']) ? $attrs['class'] .= ' hint' : $attrs['class'] = 'hint';
 
         if ($type = $node->getType()) {
-            $attrs['class'] = isset($attrs['class']) ? $attrs['class'] . ' ' : '';
+            $attrs['class'] = isset($attrs['class']) ? $attrs['class'].' ' : '';
             $attrs['class'] .= $type;
         }
 
@@ -43,10 +43,9 @@ final class HintRenderer implements NodeRendererInterface
             ? new HtmlElement(
                 'h2',
                 ['class' => 'hint-title'],
-                $icon . $title,
+                $icon.$title,
             )
             : '';
-
 
         $content = new HtmlElement(
             'div',
@@ -57,9 +56,9 @@ final class HintRenderer implements NodeRendererInterface
         return new HtmlElement(
             'div',
             $attrs,
-            "\n" .
-            $title . "\n" .
-            $content .
+            "\n".
+            $title."\n".
+            $content.
             "\n"
         );
     }

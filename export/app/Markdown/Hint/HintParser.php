@@ -2,15 +2,12 @@
 
 namespace App\Markdown\Hint;
 
-use League\CommonMark\Parser\Cursor;
-use League\CommonMark\Util\RegexHelper;
-use League\CommonMark\Util\ArrayCollection;
 use League\CommonMark\Node\Block\AbstractBlock;
-use League\CommonMark\Parser\Block\BlockContinue;
 use League\CommonMark\Parser\Block\AbstractBlockContinueParser;
+use League\CommonMark\Parser\Block\BlockContinue;
 use League\CommonMark\Parser\Block\BlockContinueParserInterface;
-use League\CommonMark\Parser\Block\BlockContinueParserWithInlinesInterface;
-use League\CommonMark\Parser\InlineParserEngineInterface;
+use League\CommonMark\Parser\Cursor;
+use League\CommonMark\Util\ArrayCollection;
 
 class HintParser extends AbstractBlockContinueParser implements BlockContinueParserInterface
 {
@@ -22,9 +19,9 @@ class HintParser extends AbstractBlockContinueParser implements BlockContinuePar
 
     public function __construct(?string $header)
     {
-        $this->block = new Hint();
+        $this->block = new Hint;
         $this->block->setHeader($header);
-        $this->strings = new ArrayCollection();
+        $this->strings = new ArrayCollection;
     }
 
     public function getBlock(): Hint
@@ -55,5 +52,4 @@ class HintParser extends AbstractBlockContinueParser implements BlockContinuePar
 
         return BlockContinue::at($cursor);
     }
-
 }

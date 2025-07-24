@@ -30,4 +30,22 @@ return [
     |
     */
     'code_highlighter' => 'PLACEHOLDER_CONFIG_CODE_HIGHLIGHTER',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Resources
+    |--------------------------------------------------------------------------
+    |
+    | If you're using Github to sync your content, you can add your resources
+    | here.
+    |
+    */
+    'resources' => [
+        // 'YOUR_RESOURCE' => [
+        //     'repo' => 'owner/repo',
+        //     'branch' => 'main',
+        //     'content' => ['docs'],
+        //     'token' => env('GITHUB_SYNC_TOKEN'),
+        // ],
+    ],
 ];

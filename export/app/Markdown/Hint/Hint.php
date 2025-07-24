@@ -2,10 +2,9 @@
 
 namespace App\Markdown\Hint;
 
+use Illuminate\Support\Facades\File;
 use League\CommonMark\Node\Block\AbstractBlock;
 use League\CommonMark\Node\StringContainerInterface;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
 class Hint extends AbstractBlock implements StringContainerInterface
 {
@@ -21,11 +20,11 @@ class Hint extends AbstractBlock implements StringContainerInterface
         if (count($words) > 1) {
             array_shift($words);
 
-            return join(' ', $words);
+            return implode(' ', $words);
         }
 
         if ($type == 'caution') {
-            return __("hints.caution");
+            return __('hints.caution');
         }
 
         if ($type == 'important') {
