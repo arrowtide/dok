@@ -38,6 +38,10 @@ class AppServiceProvider extends ServiceProvider
             return new TableOfContentsExtension;
         });
 
+        Markdown::addExtension(function () {
+            return new \App\Markdown\Hint\HintExtension;
+        });
+
     }
 
     protected function registerShiki(): void

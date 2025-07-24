@@ -1,12 +1,12 @@
 {{ if {release:is_outdated} }}
     <div class="max-w-4xl -mt-10">
-        {{ partial:components/callout type="warning" }}
-            {{ slot:content }}
+        {{ partial:components/hint type="warning" }}
+            <div class="prose prose-sm">
                 <p>You're viewing the documentation for an older version of {{ project:title }}.
                     Consider upgrading your project to
                     <span class="font-semibold">v{{ project:latest_stable_version }}{{ version }}{{ /project:latest_stable_version }}</span>.
                 </p>
-            {{ /slot:content }}
-        {{ /partial:components/callout }}
+            </div>
+        {{ /partial:components/hint }}
     </div>
 {{ /if }}

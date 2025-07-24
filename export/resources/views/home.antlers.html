@@ -61,13 +61,11 @@ cards:
                 {{ /view:cards }}
             </ul>
 
-            {{ partial:components/callout type="important" }}
-                {{ slot:content }}
-                    <div class="prose prose-sm">
-                        <p><strong>It's strongly recommend setting up GIT locally before going any further</strong> so that you can track your changes and revert them if required.</p>
-                    </div>
-                {{ /slot:content }}
-            {{ /partial:components/callout }}
+            {{ partial:components/hint type="important" }}
+                <div class="prose">
+                    <p>It's strongly recommend setting up GIT locally before going any further</strong> so that you can track your changes and revert them if required.</p>
+                </div>
+            {{ /partial:components/hint }}
         </section>
 
         {{ partial:components/separator divider="true" class="mt-30 max-w-3xl mx-auto" }}

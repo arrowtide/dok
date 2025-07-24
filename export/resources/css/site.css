@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 @import './prose.css';
-@import './callout.css' layer(base);
 
 @variant dark (&:where(.dark, .dark *));
 
@@ -38,7 +37,7 @@
   --color-moon-900: oklch(49% 0.03 283);
   --color-moon-950: oklch(42% 0.03 283);
 
-  --color-accent: var(--color-cyan-500); 
+  --color-accent: var(--color-cyan-500);
   --color-text: var(--color-moon-900);
   --color-text-strong: var(--color-midnight-500);
   --color-text-focus: var(--color-midnight-800);
@@ -54,8 +53,8 @@
   --color-popover-background: var(--color-moon-50);
   --color-popover-background-focus: var(--color-moon-200);
 
-  --animate-shake: shake 0.2s ease-out 3;  
-    
+  --animate-shake: shake 0.2s ease-out 3;
+
   @keyframes shake {
     0%,
     100% {
@@ -63,7 +62,7 @@
     }
     50% {
       transform: translateX(2px);
-    }  
+    }
   }
 }
 
@@ -96,40 +95,40 @@
   :root {
     --separator: var(--color-black);
     --prose-pre-background: var(--color-midnight-100);
-  
+
     @media (min-width: theme(--breakpoint-sm)) {
       --spacing-gutter: 3rem;
     }
-  
+
     @media (min-width: theme(--breakpoint-lg)) {
       --spacing-gutter: 4rem;
     }
-  
+
     @media (min-width: theme(--breakpoint-xl)) {
       --spacing-sidebar-width: calc(var(--spacing) * 64);
     }
-  
+
     @media (min-width: theme(--breakpoint-2xl)) {
       --spacing-gutter: 6rem;
     }
   }
-  
+
   .dark:root {
     --color-text: var(--color-moon-700);
     --color-text-strong: var(--color-white);
     --color-text-focus: var(--color-white);
     --color-border: var(--color-midnight-100);
-  
+
     --color-sidebar-text: var(--color-text);
     --color-sidebar-text-focus: var(--color-text-focus);
     --color-sidebar-title: var(--color-moon-200);
     --color-sidebar-title-focus: var(--color-white);
-  
+
     --color-body-background: var(--color-midnight-800);
-  
+
     --color-popover-background: var(--color-midnight-500);
     --color-popover-background-focus: var(--color-midnight-300);
-  
+
     --prose-a-color: var(--color-cyan-500);
     --prose-a-hover-color: var(--color-moon-300);
     --prose-color: var(--color-moon-600);
@@ -141,15 +140,15 @@
     --prose-tables-header-color: var(--color-white);
     --prose-tables-border-color: var(--color-midnight-100);
     --prose-hr-background: var(--color-midnight-300);
-  
+
     --separator: var(--color-white);
-  }   
+  }
 } /* end @layer base */
 
-/* 
+/*
   Separator
-  
-  The separator is a component that can be used to separate 
+
+  The separator is a component that can be used to separate
   elements on the page from one another.
 */
 @utility separator {
@@ -157,9 +156,9 @@
   opacity: 0.05;
 }
 
-/* 
+/*
   Overlay
-  
+
   A full screen overlay, useful for modal backgrounds.
 */
 @utility overlay {
@@ -173,9 +172,9 @@
   z-index: 30;
 }
 
-/* 
+/*
   Container
-  
+
   The default class used to contain and center content.
 */
 @utility container {
@@ -186,26 +185,26 @@
   width: 100%;
 }
 
-/* 
+/*
   Scrollbar
-  
+
   A utility to override default browser scrollbar styles,
   with automatic dark/light mode support.
 */
 @utility scrollbar-default {
   scrollbar-width: thin;
   scrollbar-color: #00000020 transparent;
-  
+
   @variant dark {
       scrollbar-color: #ffffff20 transparent;
   }
 }
 
 @layer components {
-  /* 
+  /*
     Markdown Permalinks
-    
-    If you have enabled the markdown extension and want to change 
+
+    If you have enabled the markdown extension and want to change
     the style of your permalinks, you can do so here.
   */
   .prose {
@@ -233,10 +232,10 @@
     }
   }
 
-  /* 
+  /*
     Markdown Table Of Contents
-    
-    If you have enabled the Table of Contents extension and want to change 
+
+    If you have enabled the Table of Contents extension and want to change
     the style of your table of contents, you can do so here.
   */
   .table-of-contents {
@@ -265,4 +264,112 @@
       }
     }
   }
+
+  /*
+    Markdown Hint / hints
+  */
+.hint {
+    background-color: var(--hint-background);
+    color: inherit;
+    margin-top: --spacing(8);
+    margin-bottom: --spacing(8);
+    border-radius: 10px;
+    overflow: hidden;
+
+    :where(.hint-title) {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        font-size: var(--font-md);
+        gap: --spacing(2);
+        font-weight: var(--font-weight-semibold);
+        color: var(--hint-header-content);
+        padding-top: --spacing(8);
+        padding-bottom: --spacing(1);
+        padding-left: --spacing(5);
+        padding-right: --spacing(5);
+        border-left-width: 4px;
+        border-color: var(--hint-border);
+    }
+
+    :where(.hint-icon svg) {
+        width: 20px;
+        height: 20px;
+    }
+
+    :where(.hint-content) {
+        padding: --spacing(5);
+        border-left-width: 4px;
+        border-color: var(--hint-border);
+
+        :where(p:first-child) {
+          margin-top: 0;
+        }
+    }
+}
+
+.hint.important {
+    --hint-background: --alpha(var(--color-indigo-500) / 10%);
+    --hint-border: var(--color-indigo-500);
+    --hint-header-content: var(--color-indigo-600);
+}
+
+.hint.caution {
+    --hint-background: --alpha(var(--color-rose-500) / 10%);
+    --hint-border: var(--color-rose-500);
+    --hint-header-content: var(--color-rose-600);
+}
+
+.hint.note {
+    --hint-background: --alpha(var(--color-cyan-500) / 10%);
+    --hint-border: var(--color-cyan-500);
+    --hint-header-content: var(--color-cyan-600);
+}
+
+.hint.tip {
+    --hint-background: --alpha(var(--color-teal-500) / 10%);
+    --hint-border: var(--color-teal-500);
+    --hint-header-content: var(--color-teal-600);
+}
+
+.hint.warning {
+    --hint-background: --alpha(var(--color-yellow-500) / 10%);
+    --hint-border: var(--color-yellow-500);
+    --hint-header-content: var(--color-yellow-600);
+}
+
+
+.dark {
+  .hint.important {
+    --hint-background: --alpha(var(--color-indigo-500) / 5%);
+    --hint-border: --alpha(var(--color-indigo-500) / 20%);
+    --hint-header-content: var(--color-indigo-300);
+  }
+
+  .hint.caution {
+    --hint-background: --alpha(var(--color-rose-500) / 5%);
+    --hint-border: --alpha(var(--color-rose-500) / 20%);
+    --hint-header-content: var(--color-rose-400);
+  }
+
+  .hint.note {
+    --hint-background: --alpha(var(--color-cyan-500) / 5%);
+    --hint-border: --alpha(var(--color-cyan-500) / 20%);
+    --hint-header-content: var(--color-cyan-400);
+  }
+
+  .hint.tip {
+    --hint-background: --alpha(var(--color-teal-500) / 5%);
+    --hint-border: --alpha(var(--color-teal-500) / 20%);
+    --hint-header-content: var(--color-teal-400);
+  }
+
+  .hint.warning {
+    --hint-background: --alpha(var(--color-yellow-500) / 5%);
+    --hint-border: --alpha(var(--color-yellow-500) / 20%);
+    --hint-header-content: var(--color-yellow-400);
+  }
+}
+
+
 } /* end @layer components */
