@@ -266,6 +266,22 @@
   }
 
   /*
+   Markdown Code Langauage Label
+  */
+  .prose pre code:after {
+    content: attr(data-lang);
+    position: absolute;
+    top: --spacing(5);
+    right: --spacing(14);
+    letter-spacing: 0.1rem;
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0.7;
+    font-family: var(--font-default);
+  }
+
+  /*
     Markdown Hint / hints
   */
 .hint {
