@@ -267,6 +267,9 @@
 
   /*
    Markdown Code Langauage Label
+
+   This will only work when using Torchlight Engine,
+   Shiki adds no lang attributes.
   */
   .prose pre code:after {
     content: attr(data-lang);

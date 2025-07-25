@@ -57,8 +57,8 @@
         --prose-pre-size: 0.8888889em;
         --prose-pre-margin-top: --spacing(6);
         --prose-pre-margin-bottom: --spacing(6);
-        --prose-pre-padding-top: --spacing(4);
-        --prose-pre-padding-bottom: --spacing(4);
+        --prose-pre-padding-top: --spacing(8);
+        --prose-pre-padding-bottom: --spacing(8);
         --prose-pre-padding-left: --spacing(6);
         --prose-pre-padding-right: --spacing(6);
         --prose-pre-line-height: var(--prose-leading);
@@ -68,6 +68,7 @@
         --prose-pre-scrollbar-width: thin;
         --prose-pre-scrollbar-track: transparent;
         --prose-pre-scrollbar-thumb: var(--color-moon-900);
+        --prose-pre-box-shadow: 0 0 0 1px --alpha(var(--color-white) / 15%), 0 0 0 3px --alpha(var(--color-black) / 35%), 0 0 0 5px var(--prose-pre-background);
 
         --prose-code-color: var(--color-text);
         --prose-code-background: var(--color-moon-200);
@@ -185,6 +186,7 @@
         margin-top: var(--prose-pre-margin-top);
         margin-bottom: var(--prose-pre-margin-bottom);
         border-radius: var(--prose-pre-radius);
+        box-shadow: var(--prose-pre-box-shadow);
         padding-top: var(--prose-pre-padding-top);
         padding-right: var(--prose-pre-padding-right);
         padding-bottom: var(--prose-pre-padding-bottom);
