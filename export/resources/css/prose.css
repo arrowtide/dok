@@ -9,8 +9,8 @@
         --prose-marker-weight: 500;
         --prose-color: var(--color-text);
 
-        --prose-p-margin-top: calc(var(--spacing) * 5);
-        --prose-p-margin-bottom: calc(var(--spacing) * 5);
+        --prose-p-margin-top: --spacing(5);
+        --prose-p-margin-bottom: --spacing(5);
         --prose-p-leading: var(--prose-leading);
         --prose-p-tracking: var(--prose-tracking);
 
@@ -22,29 +22,29 @@
 
         --prose-h1-color: var(--prose-headings-color);
         --prose-h1-size: var(--text-3xl);
-        --prose-h1-margin-top: calc(var(--spacing) * 15);
-        --prose-h1-margin-bottom: calc(var(--spacing) * 5);
+        --prose-h1-margin-top: --spacing(15);
+        --prose-h1-margin-bottom: --spacing(5);
         --prose-h1-leading: var(--prose-leading);
         --prose-h1-weight: var(--prose-headings-weight);
 
         --prose-h2-color: var(--prose-headings-color);
         --prose-h2-size: var(--text-2xl);
-        --prose-h2-margin-top: calc(var(--spacing) * 15);
-        --prose-h2-margin-bottom: calc(var(--spacing) * 5);
+        --prose-h2-margin-top: --spacing(15);
+        --prose-h2-margin-bottom: --spacing(5);
         --prose-h2-leading: var(--prose-leading);
         --prose-h2-weight: var(--prose-headings-weight);
 
         --prose-h3-color: var(--prose-headings-color);
         --prose-h3-size: var(--text-xl);
-        --prose-h3-margin-top: calc(var(--spacing) * 12);
-        --prose-h3-margin-bottom: calc(var(--spacing) * 4);
+        --prose-h3-margin-top: --spacing(12);
+        --prose-h3-margin-bottom: --spacing(4);
         --prose-h3-leading: var(--prose-leading);
         --prose-h3-weight: var(--prose-headings-weight);
 
         --prose-h4-color: var(--prose-headings-color);
         --prose-h4-size: var(--text-sm);
-        --prose-h4-margin-top: calc(var(--spacing) * 10);
-        --prose-h4-margin-bottom: calc(var(--spacing) * 2);
+        --prose-h4-margin-top: --spacing(10);
+        --prose-h4-margin-bottom: --spacing(2);
         --prose-h4-leading: var(--prose-leading);
         --prose-h4-weight: var(--prose-headings-weight);
 
@@ -55,12 +55,12 @@
         --prose-pre-color: var(--prose-color);
         --prose-pre-background: var(--color-moon-200);
         --prose-pre-size: 0.8888889em;
-        --prose-pre-margin-top: calc(var(--spacing) * 6);
-        --prose-pre-margin-bottom: calc(var(--spacing) * 6);
-        --prose-pre-padding-top: calc(var(--spacing) * 4);
-        --prose-pre-padding-bottom: calc(var(--spacing) * 4);
-        --prose-pre-padding-left: calc(var(--spacing) * 6);
-        --prose-pre-padding-right: calc(var(--spacing) * 6);
+        --prose-pre-margin-top: --spacing(6);
+        --prose-pre-margin-bottom: --spacing(6);
+        --prose-pre-padding-top: --spacing(4);
+        --prose-pre-padding-bottom: --spacing(4);
+        --prose-pre-padding-left: --spacing(6);
+        --prose-pre-padding-right: --spacing(6);
         --prose-pre-line-height: var(--prose-leading);
         --prose-pre-radius: 0.3rem;
         --prose-pre-letter-spacing: var(--prose-tracking);
@@ -78,9 +78,9 @@
 
         --prose-hr-height: 1px;
         --prose-hr-background: var(--color-moon-300);
-        --prose-hr-margin: calc(var(--spacing) * 12);
+        --prose-hr-margin: --spacing(12);
 
-        --prose-images-margin: calc(var(--spacing) * 10);
+        --prose-images-margin: --spacing(10);
 
         --prose-quote-color: var(--color-moon-900);
         --prose-quote-weight: bold;
@@ -88,17 +88,17 @@
         --prose-quote-border-color: var(--color-moon-300);
         --prose-quote-margin: 1.6em;
 
-        --prose-lists-margin: calc(var(--spacing) * 6);
-        --prose-lists-padding-left: calc(var(--spacing) * 6);
+        --prose-lists-margin: --spacing(6);
+        --prose-lists-padding-left: --spacing(6);
 
-        --prose-li-margin: calc(var(--spacing) * 3);
-        --prose-li-padding-left: calc(var(--spacing) * 2);
+        --prose-li-margin: --spacing(3);
+        --prose-li-padding-left: --spacing(2);
 
         --prose-tables-size: 0.875em;
         --prose-tables-header-color: var(--color-black);
         --prose-tables-header-weight: 500;
         --prose-tables-border-color: var(--color-moon-300);
-        --prose-tables-cell-padding: calc(var(--spacing) * 2);
+        --prose-tables-cell-padding: --spacing(2);
         --prose-tables-cell-edge-padding: var(--prose-tables-cell-padding);
     }
 
@@ -243,7 +243,7 @@
     .prose :where(figcaption):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
         text-align: center;
         font-style: italic;
-        margin-top: calc(var(--spacing) * 4);
+        margin-top: --spacing(4);
     }
 
     .prose :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
@@ -280,8 +280,8 @@
     }
 
     .prose :where(li):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-        margin-top: calc(var(--spacing) * 2);
-        margin-bottom: calc(var(--spacing) * 2);
+        margin-top: --spacing(2);
+        margin-bottom: --spacing(2);
         padding-left: var(--prose-li-padding-left);
     }
 
@@ -290,35 +290,35 @@
         font-weight: var(--prose-marker-weight);
     }
 
-    /* 
-        Give paragraphs less space because we're in a list  
+    /*
+        Give paragraphs less space because we're in a list
     */
     .prose :where(ul > li p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-        margin-top: calc(var(--spacing) * 2);
-        margin-bottom: calc(var(--spacing) * 2);
+        margin-top: --spacing(2);
+        margin-bottom: --spacing(2);
     }
 
-    /* 
-        Makes nested lists look like a single entity, rather than the weirdness we had before 
+    /*
+        Makes nested lists look like a single entity, rather than the weirdness we had before
     */
     .prose :where(ul ul, ul ol, ol ul, ol ol):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-        margin-top: calc(var(--spacing) * 1);
-        margin-bottom: calc(var(--spacing) * 1);
+        margin-top: --spacing(1);
+        margin-bottom: --spacing(1);
     }
 
-    /* 
-        Gives the lists a little more space when using paraphraphs in items  
+    /*
+        Gives the lists a little more space when using paraphraphs in items
     */
     .prose :where(ul > li > :first-child):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-        margin-top: calc(var(--spacing) * 4);
+        margin-top: --spacing(4);
     }
 
     .prose :where(table):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
         width: 100%;
         table-layout: auto;
         text-align: left;
-        margin-top: calc(var(--spacing) * 4);
-        margin-bottom: calc(var(--spacing) * 4);
+        margin-top: --spacing(4);
+        margin-bottom: --spacing(4);
         font-size: var(--prose-tables-size);
         background-color: var(--prose-tables-background);
         border-radius: var(--prose-tables-radius);
@@ -373,14 +373,14 @@
         }
     }
 
-    /* 
-        Reset the margins on anything proceeding a heading 
+    /*
+        Reset the margins on anything proceeding a heading
     */
     .prose :where(h1 + *, h2 + *, h3 + *, h4 + *):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
         margin-top: 0;
     }
 
-    /* 
+    /*
         Ensure if you have used a <code> element inside a heading, it uses the heading styles.
     */
     .prose :where(h1 code, h2 code, h3 code, h4 code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
@@ -388,7 +388,7 @@
         font-weight: inherit;
     }
 
-    /* 
+    /*
         Ensure if you have used a <code> element inside a heading, it uses the heading styles.
     */
     .prose :where(blockquote p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
@@ -398,15 +398,15 @@
         font-style: inherit;
     }
 
-    /* 
+    /*
         Some 3rd party syntax highlighters might change the style of <pre>.
-        You can overwrite that here by uncommenting it. 
+        You can overwrite that here by uncommenting it.
     */
     .prose :where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
         background-color: var(--prose-pre-background) !important;
     }
 
-    /* 
+    /*
         Ensure the first child of a prose container has no top margin
     */
     .prose :where(.prose > :first-child):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
