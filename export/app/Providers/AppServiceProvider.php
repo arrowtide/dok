@@ -5,8 +5,6 @@ namespace App\Providers;
 use App\Http\Controllers\GitHubSyncController;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
-use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
-use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
 use Statamic\Facades\Collection;
 use Statamic\Facades\Entry;
 use Statamic\Facades\Markdown;
@@ -30,18 +28,13 @@ class AppServiceProvider extends ServiceProvider
 
     protected function registerMarkdownExtensions(): void
     {
-        Markdown::addExtension(function () {
-            return new HeadingPermalinkExtension;
+        Markdown::addExtensions(function () {
+            return [
+                new \League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension,
+                new \League\CommonMark\Extension\TableOfContents\TableOfContentsExtension,
+                new \App\Markdown\Hint\HintExtension,
+            ];
         });
-
-        Markdown::addExtension(function () {
-            return new TableOfContentsExtension;
-        });
-
-        Markdown::addExtension(function () {
-            return new \App\Markdown\Hint\HintExtension;
-        });
-
     }
 
     protected function registerShiki(): void
