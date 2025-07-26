@@ -361,31 +361,31 @@
   .dark {
     .hint.important {
       --hint-background: --alpha(var(--color-indigo-500) / 5%);
-      --hint-border: --alpha(var(--color-indigo-500) / 20%);
+      --hint-border: --alpha(var(--color-indigo-300) / 30%);
       --hint-header-content: var(--color-indigo-300);
     }
 
     .hint.caution {
       --hint-background: --alpha(var(--color-rose-500) / 5%);
-      --hint-border: --alpha(var(--color-rose-500) / 20%);
+      --hint-border: --alpha(var(--color-rose-400) / 30%);
       --hint-header-content: var(--color-rose-400);
     }
 
     .hint.note {
       --hint-background: --alpha(var(--color-cyan-500) / 5%);
-      --hint-border: --alpha(var(--color-cyan-500) / 20%);
+      --hint-border: --alpha(var(--color-cyan-400) / 30%);
       --hint-header-content: var(--color-cyan-400);
     }
 
     .hint.tip {
       --hint-background: --alpha(var(--color-teal-500) / 5%);
-      --hint-border: --alpha(var(--color-teal-500) / 20%);
+      --hint-border: --alpha(var(--color-teal-400) / 30%);
       --hint-header-content: var(--color-teal-400);
     }
 
     .hint.warning {
       --hint-background: --alpha(var(--color-yellow-500) / 5%);
-      --hint-border: --alpha(var(--color-yellow-500) / 20%);
+      --hint-border: --alpha(var(--color-yellow-400) / 30%);
       --hint-header-content: var(--color-yellow-400);
     }
   }
