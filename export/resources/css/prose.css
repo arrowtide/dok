@@ -76,6 +76,8 @@
         --prose-code-size: 0.8888889em;
         --prose-code-weight: var(--prose-weight);
         --prose-code-padding: 0.2em 0.4em;
+        --prose-code-margin-inline: 0.1rem;
+        --prose-code-box-shadow: 0 0 0 1px --alpha(var(--color-white) / 15%);
 
         --prose-hr-height: 1px;
         --prose-hr-background: var(--color-moon-300);
@@ -203,6 +205,8 @@
         border-radius: var(--prose-code-radius);
         background-color: var(--prose-code-background);
         padding: var(--prose-code-padding);
+        box-shadow: var(--prose-code-box-shadow);
+        margin-inline: var(--prose-code-margin-inline);
     }
 
     .prose :where(a code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
@@ -219,6 +223,8 @@
         font-size: inherit;
         font-family: inherit;
         line-height: inherit;
+        box-shadow: none;
+        margin-inline: 0;
     }
 
     .prose :where(hr):not(:where([class~="not-prose"], [class~="not-prose"] *)) {

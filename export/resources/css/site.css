@@ -136,7 +136,8 @@
     --prose-headings-color: var(--color-moon-100);
     --prose-quote-color: var(--color-moon-400);
     --prose-quote-border-color: var(--color-midnight-300);
-    --prose-code-background: var(--color-midnight-400);
+    --prose-code-background: var(--color-midnight-100);
+    --prose-code-color: var(--color-moon-500);
     --prose-tables-header-color: var(--color-white);
     --prose-tables-border-color: var(--color-midnight-100);
     --prose-hr-background: var(--color-midnight-300);
