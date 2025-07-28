@@ -11,28 +11,21 @@ breadcrumbs_separator_class: 'size-2 text-text opacity-80'
     <div class="container">
         <div class="flex items-center justify-between h-12 flex-wrap sm:flex-nowrap py-2">
 
-            {{# The mobile button for the sidebar which includes the breadcrumbs #}}
-            <div class="flex lg:hidden">
-                <button class="flex items-center gap-2 text-text cursor-pointer" x-data @click="$dispatch('open-docs-navigation')">
+            <button class="flex items-center gap-2 text-text cursor-pointer lg:pointer-events-none" x-data @click="$dispatch('open-docs-navigation')">
+                <span class="lg:hidden">
                     {{ svg src="hamburger" class="size-5 sm:size-6 text-text-strong" }}
                     <span class="sr-only">Menu</span>
+                </span>
 
-                    <span class="flex items-center gap-2" aria-hidden="true">
-                        {{ nav:breadcrumbs include_home="false" }}
-                            {{ if first }}
-                                <span class="{{ view:breadcrumb_class_default }}" {{ if is_current }}aria-current="page"{{ /if }}>
-                                    Home
-                                    {{ svg :src="view:breadcrumbs_separator" :class="view:breadcrumbs_separator_class" }}
-                                </span>
-                            {{ /if  }}
-                            <span class="{{ view:breadcrumb_class_default }} {{ is_current ?= 'text-text-focus' }}">
-                                {{ title }}
-                                {{ unless last }} {{ svg :src="view:breadcrumbs_separator" :class="view:breadcrumbs_separator_class" }} {{ /unless }}
-                            </span>
-                        {{ /nav:breadcrumbs }}
-                    </span>
-                </button>
-            </div>
+                <span class="flex items-center gap-2" aria-hidden="true">
+                    {{ release:breadcrumbs }}
+                        <span class="{{ view:breadcrumb_class_default }} last:text-text-focus">
+                            {{ title }}
+                            {{ unless last }} {{ svg :src="view:breadcrumbs_separator" :class="view:breadcrumbs_separator_class" }} {{ /unless }}
+                        </span>
+                    {{ /release:breadcrumbs }}
+                </span>
+            </button>
 
             {{ push:popovers }}
                 {{ partial:components/drawer name="docs-navigation" position="left" height="full" }}
@@ -50,23 +43,6 @@ breadcrumbs_separator_class: 'size-2 text-text opacity-80'
                     {{ /slot:content }}
                 {{ /partial:components/drawer }}
             {{ /push:popovers }}
-
-            {{# The desktop breadcrumbs #}}
-            <ul class="gap-2 items-center hidden lg:flex">
-                {{ nav:breadcrumbs include_home="false" }}
-                    {{ if first }}
-                        <li class="{{ view:breadcrumb_class_default }}" {{ is_current ?= {'page' | attribute('aria-current')} }}>
-                            <a>Home</a>
-                            {{ svg :src="view:breadcrumbs_separator" :class="view:breadcrumbs_separator_class" }}
-                        </li>
-                    {{ /if }}
-
-                    <li class="{{ view:breadcrumb_class_focusable }} {{ is_current ?= 'text-text-focus' }}" {{ if is_current }}aria-current="page"{{ /if }}>
-                        <a href="{{ url }}">{{ title }}</a>
-                        {{ unless last }} {{ svg :src="view:breadcrumbs_separator" :class="view:breadcrumbs_separator_class" }} {{ /unless }}
-                    </li>
-                {{ /nav:breadcrumbs }}
-            </ul>
 
             {{ if {project:has_versions} }}
                 {{ partial:docs/partials/versions }}
