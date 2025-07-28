@@ -2,7 +2,7 @@ title: 'Example v1'
 template: docs/show
 layout: docs/layout
 revisions: false
-route: 'example/1.x/{{ slug }}'
+route: "{{ if !parent_uri }}example/1.x/{{ /if }}{{ parent_uri ?= '{parent_uri}/' }}{{ slug }}"
 sort_dir: asc
 date_behavior:
   past: public
