@@ -1,0 +1,34 @@
+{{#
+    The default sidebar navigation template, similar in style
+    to popular documentation sites.
+
+    You can try out a different style by changing refereces to this
+    partial with another from `docs/partials/sidebar/navigation/`
+#}}
+
+<menu class="flex flex-col">
+    {{ nav handle="{release:nav_handle}" }}
+        <li>
+            {{ if children }}
+            <div class="my-4">
+                <h2 class="text-xs text-sidebar-title block mb-1 pl-4 py-2 font-semibold relative group">
+                    {{ title }}
+                </h2>
+                <ul class="flex flex-col">
+                    {{ children }}
+                        <li>
+                            <a href="{{ uri }}" class="block items-center relative text-xs tracking-[0.028rem] text-sidebar-text px-4 py-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/4 {{ if is_current }} bg-accent/15 !text-accent hover:bg-accent/15! {{ /unless}}"">
+                                {{ title }}
+                            </a>
+                        </li>
+                    {{ /children }}
+                </ul>
+            </div>
+            {{ /else }}
+                <a href="{{ uri }}" class="block items-center relative text-xs tracking-[0.028rem] text-sidebar-text px-4 py-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/4 {{ if is_current }} bg-accent/15 !text-accent hover:bg-accent/15! {{ /unless}}"">
+                    {{ title }}
+                </a>
+            {{ /if }}
+        </li>
+    {{ /nav }}
+</menu>

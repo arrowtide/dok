@@ -187,6 +187,27 @@
 }
 
 /*
+  Container Offset
+
+  Used for the main body content to ensure the sidebar content & text horizontally aligns with the
+  header container content. This allows you to have for example, sidebar navigation links with
+  padding where their content still aligns with the header content.
+
+*/
+@utility container-offset {
+  max-width: 1440px;
+  padding-left: var(--spacing-gutter);
+  padding-right: var(--spacing-gutter);
+  margin-inline: auto;
+  width: 100%;
+
+  @media (min-width: theme(--breakpoint-lg)) {
+    padding-left: calc(var(--spacing-gutter) - --spacing(4));
+    padding-right: calc(var(--spacing-gutter) - --spacing(4));
+  }
+}
+
+/*
   Scrollbar
 
   A utility to override default browser scrollbar styles,

@@ -1,0 +1,31 @@
+{{#
+    You can try out a different style by changing refereces to this
+    partial with another from `docs/partials/sidebar/navigation/`
+#}}
+
+<menu class="flex flex-col pl-4">
+    {{ nav handle="{release:nav_handle}" }}
+        <li>
+            {{ if children }}
+                <div class="my-4">
+                    <h2 class="text-xs font-semibold text-sidebar-title block my-1 py-2 relative group">
+                        {{ title }}
+                    </h2>
+                    <ul class="flex flex-col">
+                        {{ children }}
+                            <li>
+                                <a href="{{ uri }}" class="block relative text-xs hover:text-sidebar-text-focus transition-colors tracking-[0.028rem] text-sidebar-text pl-4 py-2.5 before:content-[''] {{ if is_current }}text-sidebar-text-focus!{{ /if}} {{ unless is_current }}before:opacity-0 {{ /unless}} hover:before:opacity-100 before:block before:rounded-full before:bg-accent before:w-[0.188rem] before:h-5 before:absolute before:left-0">
+                                    {{ title }}
+                                </a>
+                            </li>
+                        {{ /children }}
+                    </ul>
+                </div>
+            {{ /else }}
+                <a href="{{ uri }}" class="block relative text-xs hover:text-sidebar-text-focus transition-colors tracking-[0.028rem] text-sidebar-text pl-0 py-2.5 before:content-[''] {{ if is_current }}text-sidebar-text-focus!{{ /if}} {{ unless is_current }}before:opacity-0 {{ /unless}} hover:before:opacity-100 before:block before:rounded-full before:bg-accent before:w-[0.188rem] before:h-5 before:absolute before:-left-4">
+                    {{ title }}
+                </a>
+            {{ /if }}
+        </li>
+    {{ /nav }}
+</menu>
