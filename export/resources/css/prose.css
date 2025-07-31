@@ -68,7 +68,7 @@
         --prose-pre-scrollbar-width: thin;
         --prose-pre-scrollbar-track: transparent;
         --prose-pre-scrollbar-thumb: var(--color-moon-900);
-        --prose-pre-box-shadow: 0 0 0 1px --alpha(var(--color-white) / 15%), 0 0 0 3px --alpha(var(--color-black) / 35%), 0 0 0 5px var(--prose-pre-background);
+        --prose-pre-box-shadow: none;
 
         --prose-code-color: var(--color-text);
         --prose-code-background: var(--color-moon-200);

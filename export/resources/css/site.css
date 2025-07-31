@@ -136,6 +136,7 @@
     --prose-headings-color: var(--color-moon-100);
     --prose-quote-color: var(--color-moon-400);
     --prose-quote-border-color: var(--color-midnight-300);
+    --prose-pre-box-shadow: 0 0 0 1px --alpha(var(--color-white) / 15%), 0 0 0 3px --alpha(var(--color-black) / 35%), 0 0 0 5px var(--prose-pre-background);
     --prose-code-background: var(--color-midnight-100);
     --prose-code-color: var(--color-moon-500);
     --prose-tables-header-color: var(--color-white);
