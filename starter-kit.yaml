@@ -31,9 +31,3 @@ export_paths:
 export_as:
   config/dok.export.php: config/dok.php
   package.export.json: package.json
-modules:
-  required:
-    default: true
-    prompt: false
-    dependencies:
-      alt-design/alt-redirect: dev-main

@@ -7,7 +7,7 @@ updated_at: 1741267898
 ---
 # Development
 
-By default, we use a simple Vite configuration that comes with every new Statamic site when using the CLI tool so you should feel right at home.
+By default, we use a simple Vite configuration that comes with every new Statamic site so you should feel right at home.
 
-`npm run dev` - Watches your content, rebuilds, and refreshes your browser so you can instantly see the changes. 
+`npm run dev` - Watches your content, rebuilds, and refreshes your browser so you can instantly see the changes.
 `npm run build` - Build for production

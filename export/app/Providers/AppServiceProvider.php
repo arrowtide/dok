@@ -12,6 +12,9 @@ use Statamic\Facades\Utility;
 
 class AppServiceProvider extends ServiceProvider
 {
+
+    protected string $highlightTheme = 'material-theme-palenight';
+
     public function register(): void
     {
         //
@@ -44,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Markdown::addExtension(function () {
-            return new \Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension(theme: 'material-theme-palenight');
+            return new \Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension(theme: $this->highlightTheme);
         });
 
     }
@@ -56,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Markdown::addExtension(function () {
-            return new \Torchlight\Engine\CommonMark\Extension(theme: 'material-theme-palenight');
+            return new \Torchlight\Engine\CommonMark\Extension(theme: $this->highlightTheme);
         });
 
         \Torchlight\Engine\Options::setDefaultOptionsBuilder(function () {

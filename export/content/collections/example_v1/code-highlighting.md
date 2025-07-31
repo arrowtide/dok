@@ -11,24 +11,23 @@ updated_at: 1740705521
 
 ## Intro
 
-Dok comes packaged with [spatie/commonmark-shiki-highlighter](https://github.com/spatie/commonmark-shiki-highlighter) for easy code highlighting. You can of course swap this out for another package like Torchlight. 
-
-Shiki runs every page load, so it's recommended to have some sort of static caching. [Learn more about static caching in Statamic](https://statamic.dev/static-caching). 
-
-Alternativly you may choose to use the [`{{ cache }}`](https://statamic.dev/tags/cache) tags instead. 
+When installing Dok you'll get the option to choose which code highlighter you want installed. We __strongly recommend__ using [Torchlight Engine](https://github.com/torchlight-api/engine). Infact, the code highlighting you see on this page are using Torchlight Engine! The other option is [Shiki.](https://github.com/spatie/commonmark-shiki-highlighter)
 
 
-## Theming 
+## Performance
+Shiki and Torchlight Engine runs every page load, so it's recommended to have some sort of static caching. [Learn more about static caching in Statamic](https://statamic.dev/static-caching). Alternativly you may choose to use the [`{{ cache }}`](https://statamic.dev/tags/cache) tags instead.
 
-You can change your theme by changing the `theme` parameter inside of your `AppServiceProvider.php`
-```php
-Markdown::addExtension(function () {
-    return new HighlightCodeExtension(theme: 'material-theme-lighter');
-});
-```
+It's strongly recommended to use caching for Shiki, as it's a hungry process.
 
-[View a list of available themes.
-](https://github.com/shikijs/textmate-grammars-themes/tree/main/packages/tm-themes)
+
+## Theme
+
+You can change your theme by changing the `$highlightTheme` variable inside of your `AppServiceProvider.php`.
+
+[View a list of available themes for Torchlight Engine.](https://github.com/torchlight-api/engine?tab=readme-ov-file#available-themes)
+[View a list of available themes for Shiki.](https://github.com/shikijs/textmate-grammars-themes/tree/main/packages/tm-themes)
+
+---
 
 ## Examples
 
@@ -54,15 +53,15 @@ class Animal:
     def __init__(self, name, species):
         self.name = name
         self.species = species
-        
+
     def make_sound(self):
         print("Some generic sound")
-        
+
 class Dog(Animal):
     def __init__(self, name, breed):
         super().__init__(name, species="Dog")
         self.breed = breed
-        
+
     def make_sound(self):
         print("Woof!")
 
@@ -132,7 +131,7 @@ h1 {
 {{ if show_header }}
     <header class="site-header {{ header_class }}">
         <h1>{{ title }}</h1>
-        
+
         {{# Navigation #}}
         <nav>
             {{ nav:main include_home="true" }}
@@ -192,16 +191,16 @@ ORDER BY e.last_name ASC;
 public class Person {
     private String name;
     private int age;
-    
+
     public Person(String name, int age) {
         this.name = name;
         this.age = age;
     }
-    
+
     public void greet() {
         System.out.println("Hello, my name is " + name + " and I am " + age + " years old.");
     }
-    
+
     public static void main(String[] args) {
         Person person = new Person("Alice", 30);
         person.greet();
@@ -228,13 +227,13 @@ namespace SyntaxExample
                 {"Bob", 87},
                 {"Charlie", 92}
             };
-            
+
             // Iterate through the dictionary
             foreach (var item in scores)
             {
                 Console.WriteLine($"{item.Key} scored {item.Value}");
             }
-            
+
             // LINQ example
             var highScores = scores.Where(s => s.Value >= 90);
         }
@@ -248,13 +247,13 @@ namespace SyntaxExample
 # Example of a Ruby class
 class Book
   attr_accessor :title, :author, :pages
-  
+
   def initialize(title, author, pages)
     @title = title
     @author = author
     @pages = pages
   end
-  
+
   def to_s
     "#{@title} by #{@author} (#{@pages} pages)"
   end
@@ -279,12 +278,12 @@ end
 class User {
     private $name;
     private $email;
-    
+
     public function __construct($name, $email) {
         $this->name = $name;
         $this->email = $email;
     }
-    
+
     public function getInfo() {
         return "Name: {$this->name}, Email: {$this->email}";
     }

@@ -10,9 +10,9 @@ updated_at: 1741267363
 [TOC]
 
 ## Introduction
-Dok makes it easy to use GitHub as the source for your documentation. You can even mix content sources across collections, you aren't tied to one or the other. This is great when you host your docs within the same repository as your product. 
+Dok makes it easy to use GitHub as the source for your documentation. You can even mix content sources across collections, you aren't tied to one or the other. This is great when you host your docs within the same repository as your product.
 
-You can even sync content from _different_ owners and organisations as long as your personal access token has the correct permissions. 
+You can even sync content from _different_ owners and organisations as long as your personal access token has the correct permissions.
 
 
 ## Prerequisites
@@ -24,11 +24,11 @@ Assumes you have already created a GitHub personal access token. [Learn how to c
 1) **Add the fieldset to your blueprint**
 Dok comes with a fieldset called `content_github`. On collections you want to use GitHub as the source, you will need to add that fieldset to the corrosponding collection.
 
-2) **Update your config inside of `config/documentation.php`**
-Add a new array item to your `resources` array. The below is an example. You may need to clear your config cache after changing this. 
+2) **Update your config inside of `config/dok.php`**
+Add a new array item to your `resources` array. The below is an example. You may need to clear your config cache after changing this.
 
 ```php
-resources => [
+'resources' => [
   'documentation' => [
        // Your reposistory
        'repo' => 'owner/repo',
@@ -36,11 +36,11 @@ resources => [
        // The branch to get
        'branch' => 'main',
 
-       // An array of folders to get. 
+       // An array of folders to get.
        // The below would ONLY sync the 'docs' folder from the main branch.
        'content' => ['docs'],
 
-       // The env variable for your Github token. 
+       // The env variable for your Github token.
        'token' => env('GITHUB_SYNC_TOKEN'),
   ],
 ],
@@ -54,6 +54,6 @@ A utility has been provided in this starterkit to sync via the control panel. Go
 ### With a command
 You can run the following command to sync a resource. Replace `your_resource` with the name of your resource.
 
-```bash
+```shell
 php artisan github:sync your_resource
 ```
