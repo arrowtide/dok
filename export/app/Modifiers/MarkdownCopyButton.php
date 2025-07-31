@@ -3,6 +3,7 @@
 namespace App\Modifiers;
 
 use Statamic\Modifiers\Modifier;
+use Illuminate\Support\Facades\View;
 
 class MarkdownCopyButton extends Modifier
 {
@@ -16,8 +17,11 @@ class MarkdownCopyButton extends Modifier
      */
     public function index($value, $params, $context)
     {
+        if (! View::exists('docs.partials._copy_code')) {
+            throw new \Exception('We cannot find the view [docs.partials.copy_code] for the modifier [markdown_copy_button]. You may have moved or renamed the file.');
+        }
 
-        $buttonHtml = trim(view('docs.partials.copy_code')->render());
+        $buttonHtml = trim(view('docs.partials._copy_code')->render());
 
         // Match <pre> that contains <code> anywhere inside (non-greedy)
         // and inject button before the closing </pre>
