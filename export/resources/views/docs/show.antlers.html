@@ -1,3 +1,5 @@
+{{ partial:docs/partials/body_background }}
+
 <div class="flex flex-col">
     <header class="sticky top-0 bg-body-background/80 backdrop-blur-[10px] z-20">
         {{ partial:docs/partials/header/main }}
@@ -5,10 +7,6 @@
     </header>
 
     <div class="flex items-start container-offset">
-        <div class="items-center justify-center absolute h-[600px] w-full top-0 left-0 pointer-events-none overflow-x-hidden hidden dark:flex">
-            <div class="absolute top-0 blur-3xl to-transparent  bg-gradient-to-t from-accent/10 rotate-[-10deg] h-[400px] w-[1200px]"></div>
-        </div>
-
         <aside class="fixed top-[8.2rem] overflow-auto w-sidebar-width h-full max-h-[calc(100dvh-8.2rem)] shrink-0 hidden lg:flex border-r border-black/5 dark:border-white/5">
             <div class="max-h-[calc(100dvh-8.2rem)] overflow-y-auto w-full pr-8 py-16 scrollbar-default">
                 <div class="flex flex-col">
