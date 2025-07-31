@@ -1,7 +1,17 @@
 A beautiful documentation starter kit.
 
+## **New in v2.0:**
+* Added Torchlight Engine as the recommended **code highlighter**.
+* New **hints** extension for callouts, tips etc.
+* New **copy code** button.
+* New **language label** (Torchlight Engine only).
+* New custom breadcrumbs that work from the _navigation_ instead of the current URI.
+* Better designed sidebar navigation. You can now choose between 3 different templates that come with different styles and functionality.
+* Enhanced visual styles.
+* Numerous other fixes and accessibility improvements.
+
 ## Features
-* Tailwind CSS
+* Tailwind 4
 * AlpineJS
 * Light & Dark theme
 * Easily create **new themes** with css variables
@@ -16,13 +26,13 @@ A beautiful documentation starter kit.
 * Sync from GitHub, even from multiple **repositories** and **organisations**.
 * Sync via **control panel**, on a **command**
 * **Permalink** and **Table of contents** markdown extensions preinstalled.
-* Shiki for **code highlighting**
+* Torchlight Engine or Shiki for **code highlighting**
 
 ### Projects and versions
 You can host multiple projects and manage different versions for each project. This is handled through the releases collection. To add a new project or version, simply create a new entry in the collection and configure the required fields.
 
 ### Statamic as a content source
-Wanna just write markdown directly to Statamic? Yup, you can do that. 
+Wanna just write markdown directly to Statamic? Yup, you can do that.
 
 ### GitHub as a content source
 If you'd like to host your documentation within a project repository to keep everything centralized, Dok makes the process simple. All you need is a GitHub Personal Access Token and a small update to your configuration file. Once that's done, you can easily link entries to their corresponding resource paths.
@@ -47,7 +57,7 @@ By default, we use a simple Vite configuration that comes with every new Statami
 
 **Installing with Statamic CLI (recommended)**
 
-Get up and running in an instant with the Statamic CLI tool. This will install a fresh Statamic instance with Dok installed. 
+Get up and running in an instant with the Statamic CLI tool. This will install a fresh Statamic instance with Dok installed.
 
 ```bash
 statamic new mysite arrowtide/dok
