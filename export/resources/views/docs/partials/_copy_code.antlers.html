@@ -7,7 +7,7 @@
     x-data="copyCode()"
     x-bind="eventListeners"
     x-bind:data-copied="copied"
-    class="group absolute top-3 right-3 px-3 py-2 rounded-lg flex items-center justify-centerfocus:text-focus cursor-pointer transition duration-100 font-bold gap-1"
+    class="group absolute top-3 right-3 px-3 py-2 rounded-lg items-center justify-center cursor-pointer transition duration-100 font-bold gap-1 hidden md:flex"
 >
     {{ svg src="copy" class="size-5 fill-current block group-data-[copied=true]:hidden group-data-[copied=error]:hidden" aria-hidden="true" }}
     {{ svg src="check" class="size-5 fill-current group-data-[copied=true]:block hidden" aria-hidden="true"  }}

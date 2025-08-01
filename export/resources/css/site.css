@@ -10,7 +10,7 @@
   --text-xs: 0.875rem; /* 14px */
   --text-sm: 0.938rem; /* 15px */
 
-  --spacing-gutter: 1.6rem;
+  --spacing-gutter: 2rem;
   --spacing-sidebar-width: --spacing(52);
 
   --color-midnight-50: oklch(32% 0.02 283);
@@ -90,7 +90,6 @@
   @view-transition {
     navigation: auto;
   }
-
 
   :root {
     --separator: var(--color-black);
@@ -289,7 +288,7 @@
   }
 
   /*
-   Markdown Code Langauage Label
+   Markdown Code Language Label
 
    This will only work when using Torchlight Engine,
    Shiki adds no lang attributes.
@@ -297,14 +296,21 @@
   .prose pre code:after {
     content: attr(data-lang);
     position: absolute;
-    top: --spacing(5);
-    right: --spacing(14);
+    top: --spacing(3);
+    right: --spacing(3);
     letter-spacing: 0.1rem;
-    font-size: 0.64rem;
+    font-size: 0.54rem;
     text-transform: uppercase;
     font-weight: bold;
     opacity: 0.7;
     font-family: var(--font-default);
+
+    @media (min-width: theme(--breakpoint-md)) {
+      top: --spacing(5);
+      right: --spacing(14);
+      font-size: 0.64rem;
+    }
+
   }
 
   /*

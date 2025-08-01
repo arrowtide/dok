@@ -12,7 +12,6 @@ Dok comes with different sidebar navigation templates that you can choose from.
 └── docs/partials/sidebar/navigation/
     ├── _collapse.antlers.html
     ├── _default.antlers.html
-    └── _no_collapse.antlers.html
 ```
 
 

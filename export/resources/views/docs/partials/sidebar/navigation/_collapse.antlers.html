@@ -3,18 +3,24 @@
     partial with another from `docs/partials/sidebar/navigation/`
 #}}
 
-<menu x-data="menu()" class="flex flex-col pl-4">
+<menu class="flex flex-col">
     {{ nav handle="{release:nav_handle}" }}
         {{ $depth_1_index = {index} }}
-        <li>
+        <li x-data="menu()">
             {{ if children }}
-                <h2 class="text-xs font-semibold  text-sidebar-title block my-1 relative group">
-                    <button class="inline-flex items-center cursor-pointer py-2 group-hover:text-sidebar-title-focus" @click="active = `{{ index }}`" :aria-expanded="active == `{{ index }}`">
+                <h2 class="block">
+                    <button
+                        class="group flex justify-between w-full text-left text-xs font-semibold  text-sidebar-title my-1 px-4 py-3 rounded-xl relative items-center cursor-pointer hover:bg-black/3 dark:hover:bg-white/5 group-hover:text-sidebar-title-focus"
+                        @click="active = active ? null : `{{ index }}`"
+                        :aria-expanded="active == `{{ index }}`"
+                    >
                         {{ title }}
+
+                        {{ svg src="caret-right" class="size-3 fill-current ml-2 group-aria-expanded:rotate-90 transition duration-100" aria-hidden="true" }}
                     </button>
                 </h2>
                 <ul
-                    class="flex flex-col"
+                    class="flex flex-col pl-3"
 
                     {{ if ({children} | where('uri', {current_uri}) | count) == 1}}
                         x-init="active = '{{ $depth_1_index }}'"
@@ -26,7 +32,7 @@
                     >
                     {{ children }}
                         <li>
-                            <a href="{{ uri }}" class="block relative text-xs hover:text-sidebar-text-focus transition-colors tracking-[0.028rem] text-sidebar-text pl-4 py-2.5 before:content-[''] {{ if is_current }}text-sidebar-text-focus!{{ /if}} {{ unless is_current }}before:opacity-0 {{ /unless}} hover:before:opacity-100 before:block before:rounded-full before:bg-accent before:w-[0.188rem] before:h-5 before:absolute before:left-0">
+                            <a href="{{ uri }}" class="block items-center relative text-xs tracking-[0.028rem] text-sidebar-text px-4 py-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/4 {{ if is_current }} bg-accent/15 !text-accent hover:bg-accent/15! {{ /unless}}"">
                                 {{ title }}
                             </a>
                         </li>
@@ -34,7 +40,7 @@
                 </ul>
             {{ /else }}
                 <li>
-                    <a href="{{ uri }}" class="block relative text-xs hover:text-sidebar-text-focus transition-colors tracking-[0.028rem] text-sidebar-text pl-0 py-2.5 before:content-[''] {{ if is_current }}text-sidebar-text-focus!{{ /if}} {{ unless is_current }}before:opacity-0 {{ /unless}} hover:before:opacity-100 before:block before:rounded-full before:bg-accent before:w-[0.188rem] before:h-5 before:absolute before:-left-4">
+                    <a href="{{ uri }}" class="block items-center relative text-xs tracking-[0.028rem] text-sidebar-text px-4 py-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/4 {{ if is_current }} bg-accent/15 !text-accent hover:bg-accent/15! {{ /unless}}"">
                         {{ title }}
                     </a>
                 </li>
@@ -46,7 +52,6 @@
 <script>
     function menu(){
         return {
-            currentUri: '{{ current_uri }}',
             active: null,
         }
     }

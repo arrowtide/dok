@@ -11,7 +11,7 @@ breadcrumbs_separator_class: 'size-2 text-text opacity-80'
     <div class="container">
         <div class="flex items-center justify-between h-12 flex-wrap sm:flex-nowrap py-2">
 
-            <button class="flex items-center gap-2 text-text cursor-pointer lg:pointer-events-none" x-data @click="$dispatch('open-docs-navigation')">
+            <button class="flex items-center gap-2 text-text cursor-pointer lg:pointer-events-none touch-manipulation" x-data @click="$dispatch('open-docs-navigation')">
                 <span class="lg:hidden">
                     {{ svg src="hamburger" class="size-5 sm:size-6 text-text-strong" }}
                     <span class="sr-only">Menu</span>
