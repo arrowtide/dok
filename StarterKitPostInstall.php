@@ -18,6 +18,11 @@ class StarterKitPostInstall
     public function handle($console)
     {
 
+        $this->exportAndDeleteFile('config/dok.export.php', 'config/dok.php');
+        info('[✓] Added config/dok.php');
+        $this->exportAndDeleteFile('package.export.json', 'package.json');
+        info('[✓] Added package.json');
+
         $this->config = app('files')->get(base_path('config/dok.php'));
         $this->env = app('files')->get(base_path('.env'));
 
@@ -33,9 +38,10 @@ class StarterKitPostInstall
 
     protected function installNodeModules(): void
     {
+
         $selected = confirm(
             required: true,
-            label: 'Ready to install node?',
+            label: 'Ready to install node modules?',
         );
 
         if ($selected) {
@@ -126,6 +132,18 @@ YAML;
     {
         app('files')->put(base_path('config/dok.php'), $this->config);
         app('files')->put(base_path('.env'), $this->env);
+    }
+
+    protected function exportAndDeleteFile(string $source, string $destination): void
+    {
+        $sourcePath = base_path($source);
+        $destinationPath = base_path($destination);
+
+        File::ensureDirectoryExists(dirname($destinationPath));
+
+        File::put($destinationPath, File::get($sourcePath));
+
+        File::delete($sourcePath);
     }
 
     protected function finish(): void

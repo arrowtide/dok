@@ -12,7 +12,6 @@ use Statamic\Facades\Utility;
 
 class AppServiceProvider extends ServiceProvider
 {
-
     protected string $highlightTheme = 'material-theme-palenight';
 
     public function register(): void

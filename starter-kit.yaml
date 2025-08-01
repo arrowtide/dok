@@ -28,6 +28,5 @@ export_paths:
   - resources/fieldsets
   - resources/views
   - vite.config.js
-export_as:
-  config/dok.export.php: config/dok.php
-  package.export.json: package.json
+  - config/dok.export.php
+  - package.export.json

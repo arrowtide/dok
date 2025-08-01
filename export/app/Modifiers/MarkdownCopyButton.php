@@ -2,8 +2,8 @@
 
 namespace App\Modifiers;
 
-use Statamic\Modifiers\Modifier;
 use Illuminate\Support\Facades\View;
+use Statamic\Modifiers\Modifier;
 
 class MarkdownCopyButton extends Modifier
 {

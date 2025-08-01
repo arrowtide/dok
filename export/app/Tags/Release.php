@@ -2,12 +2,12 @@
 
 namespace App\Tags;
 
+use Statamic\Exceptions\NavigationNotFoundException;
 use Statamic\Facades\Collection;
 use Statamic\Facades\Entry;
+use Statamic\Facades\Nav;
 use Statamic\Facades\Site;
 use Statamic\Tags\Tags;
-use Statamic\Facades\Nav;
-use Statamic\Exceptions\NavigationNotFoundException;
 
 class Release extends Tags
 {
@@ -96,14 +96,14 @@ class Release extends Tags
     private function getBreadcrumbs($handle)
     {
 
-        if(! Nav::findByHandle($handle)){
+        if (! Nav::findByHandle($handle)) {
             throw new NavigationNotFoundException($handle);
 
             return [];
         }
 
         $items = Nav::findByHandle($handle)->trees()->get('default')->tree();
-        $currentUri = "/" . request()->path();
+        $currentUri = '/'.request()->path();
 
         return $this->findBreadcrumbTrail($items, $currentUri);
     }
@@ -116,7 +116,7 @@ class Release extends Tags
             $stack[] = [$item, []];
         }
 
-        while (!empty($stack)) {
+        while (! empty($stack)) {
             [$current, $trail] = array_pop($stack);
 
             $entryId = $current['entry'] ?? null;
@@ -134,7 +134,7 @@ class Release extends Tags
                 return $newTrail;
             }
 
-            if (!empty($current['children'])) {
+            if (! empty($current['children'])) {
                 foreach ($current['children'] as $child) {
                     $stack[] = [$child, $newTrail];
                 }
