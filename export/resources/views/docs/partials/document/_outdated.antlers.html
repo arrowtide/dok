@@ -1,0 +1,15 @@
+{{ if {release:is_outdated} }}
+    <div class="max-w-4xl -mt-10">
+        {{ partial:components/hint type="warning" }}
+            <div class="prose prose-sm">
+                <p>
+                    You're viewing the documentation for an older version of {{ project:title }}.
+                    Consider upgrading your project to
+                    <a href="{{ project:latest_stable_version_url }}">
+                        <span class="font-semibold">version {{ project:latest_stable_version }}{{ version }}{{ /project:latest_stable_version }}</span>
+                    </a>
+                </p>
+            </div>
+        {{ /partial:components/hint }}
+    </div>
+{{ /if }}

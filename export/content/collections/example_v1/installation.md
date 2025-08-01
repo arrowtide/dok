@@ -9,12 +9,12 @@ updated_at: 1741264233
 
 **Installing with Statamic CLI (recommended)**
 
-Get up and running in an instant with the Statamic CLI tool. This will install a fresh Statamic instance with Dok installed. 
+Get up and running in an instant with the Statamic CLI tool. This will install a fresh Statamic instance with Dok installed.
 
-```bash
+```shell
 statamic new my-site arrowtide/dok
 ```
 
 **Installing into an existing site**
-```bash
+```shell
 php please starter-kit:install arrowtide/dok

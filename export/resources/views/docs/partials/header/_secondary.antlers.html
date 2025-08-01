@@ -1,0 +1,54 @@
+---
+breadcrumb_class_default: 'flex items-center gap-2 text-text text-2xs sm:text-xs'
+breadcrumb_class_focusable: 'flex items-center gap-2 text-text text-xs hover:text-accent focus:text-accent'
+breadcrumbs_separator: 'carret-double-right'
+breadcrumbs_separator_class: 'size-2 text-text opacity-80'
+---
+
+{{ $release_home_url = {release:home_url} }}
+
+<div class="py-1 w-full border-b border-black/10 dark:border-white/10">
+    <div class="container">
+        <div class="flex items-center justify-between h-12 flex-wrap sm:flex-nowrap py-2">
+
+            <button class="flex items-center gap-2 text-text cursor-pointer lg:pointer-events-none touch-manipulation" x-data @click="$dispatch('open-docs-navigation')">
+                <span class="lg:hidden">
+                    {{ svg src="hamburger" class="size-5 sm:size-6 text-text-strong" }}
+                    <span class="sr-only">Menu</span>
+                </span>
+
+                <span class="flex items-center gap-2" aria-hidden="true">
+                    {{ release:breadcrumbs }}
+                        <span class="{{ view:breadcrumb_class_default }} last:text-text-focus">
+                            {{ title }}
+                            {{ unless last }} {{ svg :src="view:breadcrumbs_separator" :class="view:breadcrumbs_separator_class" }} {{ /unless }}
+                        </span>
+                    {{ /release:breadcrumbs }}
+                </span>
+            </button>
+
+            {{ push:popovers }}
+                {{ partial:components/drawer name="docs-navigation" position="left" height="full" }}
+                    {{ slot:content }}
+                        <div class="p-10">
+                            <div class="flex flex-col grow transition duration-1000 starting:opacity-0 starting:translate-y-1">
+                                <h2 class="text-lg mb-0 text-text-strong font-medium mt-5">{{ project:title }}</h2>
+                                {{ partial:components/separator class="mb-5 mt-3" }}
+
+                                <div class="flex flex-col grow w-full max-w-4xl mx-auto">
+                                    {{ partial:docs/partials/sidebar/navigation/default }}
+                                </div>
+                            </div>
+                        </div>
+                    {{ /slot:content }}
+                {{ /partial:components/drawer }}
+            {{ /push:popovers }}
+
+            {{ if {project:has_versions} }}
+                {{ partial:docs/partials/versions }}
+            {{ /if }}
+        </div>
+    </div>
+</div>
+
+

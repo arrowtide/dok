@@ -1,0 +1,29 @@
+
+{{ hint_title = switch (
+    (type == 'important') => 'Important',
+    (type == 'note') => 'Note',
+    (type == 'tip') => 'Tip',
+    (type == 'warning') => 'Warning',
+    (type == 'caution') => 'Caution',
+    () => 'Note',
+)}}
+
+{{ hint_icon = switch (
+    (type == 'important') => 'hint/hint-important',
+    (type == 'note') => 'hint/hint-note',
+    (type == 'tip') => 'hint/hint-tip',
+    (type == 'warning') => 'hint/hint-warning',
+    (type == 'caution') => 'hint/hint-caution',
+    () => 'Note',
+)}}
+
+
+<div class="hint {{ type }}">
+    <h2 class="hint-title">
+        <span class="hint-icon">{{ svg :src="hint_icon" }}</span>
+        {{ hint_title }}
+    </h2>
+    <div class="hint-content">
+        {{ slot }}
+    </div>
+</div>

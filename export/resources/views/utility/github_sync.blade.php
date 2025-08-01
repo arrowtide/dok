@@ -1,6 +1,6 @@
 @extends('statamic::layout')
 @section('title', 'Github Sync')
- 
+
 @section('content')
     <header class="mb-6">
         @include('statamic::partials.breadcrumb', [
@@ -11,7 +11,7 @@
             <h1>{{ __('Github Sync') }}</h1>
         </div>
     </header>
-    
+
     <ul class="grid gap-4">
         @foreach (config('documentation.resources') as $name => $resource)
             <li class="card">
@@ -80,7 +80,7 @@
         document.addEventListener('click', function(event) {
             if (event.target && event.target.classList.contains('github-sync-button')) {
                 const form = event.target.closest('form');
-                
+
                 if (form) {
                     const formData = new FormData(form);
 

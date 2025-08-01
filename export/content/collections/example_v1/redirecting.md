@@ -9,16 +9,16 @@ updated_at: 1741264074
 
 If you are using versions in your routes and are prefixing with the name of your project, you may want to set up redirects.
 
+For example, if you anticipate large version changes and want seperate collections for each version, you might have the following url structure:
 ```
 /docs/1.x
+/docs/2.x
+...
 ```
 
-Using the example above your homepage for that collection will be mapped to the `1.x`, if you wanted to navigate to `/docs` this page wouldn't be found. 
+Great! But now `/docs` links to a 404 page. To fix this, you can set up a **Link** (a redirect) page that points to the latest version.
 
-For this reason we ship Dok with a [redirect](https://statamic.com/addons/alt-design/alt-redirects) plugin by the amazing folks at [Alt Design](https://statamic.com/creators/alt-design). 
-
-Simply add a redirect for that URL in the plugins settings page that points to the latest version:
-
-| From    | To | Type |
-| -------- | ------- | ------- |
-| `/docs` | `/docs/1.x` | 302 |
+For the case above, we'll add a new **Link** entry in the `pages` collection:
+1) Enable `Link` in the **Content Model** section of your collection settings.
+2) Go back and create a new entry, and choose **Link** from the options.
+3) Fill in the fields and choose your latest versions homepage from the entry selector.

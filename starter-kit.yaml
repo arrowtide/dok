@@ -5,6 +5,8 @@ export_paths:
   - app/Providers/AppServiceProvider.php
   - app/Tags/Project.php
   - app/Tags/Release.php
+  - app/Markdown
+  - app/Modifiers/MarkdownCopyButton.php
   - config/statamic/markdown.php
   - public/assets/example_project
   - content/assets
@@ -25,12 +27,6 @@ export_paths:
   - resources/svg
   - resources/fieldsets
   - resources/views
-  - package.json
   - vite.config.js
-modules:
-  required:
-    default: true
-    prompt: false
-    dependencies:
-      alt-design/alt-redirect: dev-main
-      spatie/commonmark-shiki-highlighter: dev-main
+  - config/dok.export.php
+  - package.export.json

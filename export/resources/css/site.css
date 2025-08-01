@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 @import './prose.css';
-@import './callout.css' layer(base);
 
 @variant dark (&:where(.dark, .dark *));
 
@@ -11,8 +10,8 @@
   --text-xs: 0.875rem; /* 14px */
   --text-sm: 0.938rem; /* 15px */
 
-  --spacing-gutter: 1.6rem;
-  --spacing-sidebar-width: calc(var(--spacing) * 52);
+  --spacing-gutter: 2rem;
+  --spacing-sidebar-width: --spacing(52);
 
   --color-midnight-50: oklch(32% 0.02 283);
   --color-midnight-100: oklch(30% 0.02 283);
@@ -38,7 +37,7 @@
   --color-moon-900: oklch(49% 0.03 283);
   --color-moon-950: oklch(42% 0.03 283);
 
-  --color-accent: var(--color-cyan-500); 
+  --color-accent: var(--color-cyan-500);
   --color-text: var(--color-moon-900);
   --color-text-strong: var(--color-midnight-500);
   --color-text-focus: var(--color-midnight-800);
@@ -53,6 +52,18 @@
 
   --color-popover-background: var(--color-moon-50);
   --color-popover-background-focus: var(--color-moon-200);
+
+  --animate-shake: shake 0.2s ease-out 3;
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(-2px);
+    }
+    50% {
+      transform: translateX(2px);
+    }
+  }
 }
 
 @layer base {
@@ -80,44 +91,43 @@
     navigation: auto;
   }
 
-
   :root {
     --separator: var(--color-black);
     --prose-pre-background: var(--color-midnight-100);
-  
+
     @media (min-width: theme(--breakpoint-sm)) {
       --spacing-gutter: 3rem;
     }
-  
+
     @media (min-width: theme(--breakpoint-lg)) {
       --spacing-gutter: 4rem;
     }
-  
+
     @media (min-width: theme(--breakpoint-xl)) {
-      --spacing-sidebar-width: calc(var(--spacing) * 64);
+      --spacing-sidebar-width: --spacing(64);
     }
-  
+
     @media (min-width: theme(--breakpoint-2xl)) {
       --spacing-gutter: 6rem;
     }
   }
-  
+
   .dark:root {
     --color-text: var(--color-moon-700);
     --color-text-strong: var(--color-white);
     --color-text-focus: var(--color-white);
     --color-border: var(--color-midnight-100);
-  
+
     --color-sidebar-text: var(--color-text);
     --color-sidebar-text-focus: var(--color-text-focus);
     --color-sidebar-title: var(--color-moon-200);
     --color-sidebar-title-focus: var(--color-white);
-  
+
     --color-body-background: var(--color-midnight-800);
-  
+
     --color-popover-background: var(--color-midnight-500);
     --color-popover-background-focus: var(--color-midnight-300);
-  
+
     --prose-a-color: var(--color-cyan-500);
     --prose-a-hover-color: var(--color-moon-300);
     --prose-color: var(--color-moon-600);
@@ -125,19 +135,21 @@
     --prose-headings-color: var(--color-moon-100);
     --prose-quote-color: var(--color-moon-400);
     --prose-quote-border-color: var(--color-midnight-300);
-    --prose-code-background: var(--color-midnight-400);
+    --prose-pre-box-shadow: 0 0 0 1px --alpha(var(--color-white) / 15%), 0 0 0 3px --alpha(var(--color-black) / 35%), 0 0 0 5px var(--prose-pre-background);
+    --prose-code-background: var(--color-midnight-100);
+    --prose-code-color: var(--color-moon-500);
     --prose-tables-header-color: var(--color-white);
     --prose-tables-border-color: var(--color-midnight-100);
     --prose-hr-background: var(--color-midnight-300);
-  
+
     --separator: var(--color-white);
-  }   
+  }
 } /* end @layer base */
 
-/* 
+/*
   Separator
-  
-  The separator is a component that can be used to separate 
+
+  The separator is a component that can be used to separate
   elements on the page from one another.
 */
 @utility separator {
@@ -145,9 +157,9 @@
   opacity: 0.05;
 }
 
-/* 
+/*
   Overlay
-  
+
   A full screen overlay, useful for modal backgrounds.
 */
 @utility overlay {
@@ -161,9 +173,9 @@
   z-index: 30;
 }
 
-/* 
+/*
   Container
-  
+
   The default class used to contain and center content.
 */
 @utility container {
@@ -174,26 +186,47 @@
   width: 100%;
 }
 
-/* 
+/*
+  Container Offset
+
+  Used for the main body content to ensure the sidebar content & text horizontally aligns with the
+  header container content. This allows you to have for example, sidebar navigation links with
+  padding where their content still aligns with the header content.
+
+*/
+@utility container-offset {
+  max-width: 1440px;
+  padding-left: var(--spacing-gutter);
+  padding-right: var(--spacing-gutter);
+  margin-inline: auto;
+  width: 100%;
+
+  @media (min-width: theme(--breakpoint-lg)) {
+    padding-left: calc(var(--spacing-gutter) - --spacing(4));
+    padding-right: calc(var(--spacing-gutter) - --spacing(4));
+  }
+}
+
+/*
   Scrollbar
-  
+
   A utility to override default browser scrollbar styles,
   with automatic dark/light mode support.
 */
 @utility scrollbar-default {
   scrollbar-width: thin;
   scrollbar-color: #00000020 transparent;
-  
+
   @variant dark {
       scrollbar-color: #ffffff20 transparent;
   }
 }
 
 @layer components {
-  /* 
+  /*
     Markdown Permalinks
-    
-    If you have enabled the markdown extension and want to change 
+
+    If you have enabled the markdown extension and want to change
     the style of your permalinks, you can do so here.
   */
   .prose {
@@ -221,36 +254,170 @@
     }
   }
 
-  /* 
+  /*
     Markdown Table Of Contents
-    
-    If you have enabled the Table of Contents extension and want to change 
+
+    If you have enabled the Table of Contents extension and want to change
     the style of your table of contents, you can do so here.
   */
   .table-of-contents {
-    padding-left: calc(var(--spacing) * 2.5);
+    padding-left: --spacing(2.5);
     font-size: 0.9rem;
 
     & a:before  {
       content: "#";
       color: var(--prose-a-color);
-      margin-right: calc(var(--spacing) * 2);
+      margin-right: --spacing(2);
     }
 
     & ul {
-      padding-left: calc(var(--spacing) * 5)
+      padding-left: --spacing(5);
     }
 
     & a {
       color: var(--color-text);
       display: block;
-      padding-top: calc(var(--spacing) * 1.5);
-      padding-bottom: calc(var(--spacing) * 1.5);
-      padding-right: calc(var(--spacing) * 2);
+      padding-top: --spacing(1.5);
+      padding-bottom: --spacing(1.5);
+      padding-right: --spacing(2);
 
       &:hover {
         color: var(--color-text-focus);
       }
     }
   }
+
+  /*
+   Markdown Code Language Label
+
+   This will only work when using Torchlight Engine,
+   Shiki adds no lang attributes.
+  */
+  .prose pre code:after {
+    content: attr(data-lang);
+    position: absolute;
+    top: --spacing(3);
+    right: --spacing(3);
+    letter-spacing: 0.1rem;
+    font-size: 0.54rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0.7;
+    font-family: var(--font-default);
+
+    @media (min-width: theme(--breakpoint-md)) {
+      top: --spacing(5);
+      right: --spacing(14);
+      font-size: 0.64rem;
+    }
+
+  }
+
+  /*
+    Markdown Hint / hints
+  */
+  .hint {
+      background-color: var(--hint-background);
+      color: inherit;
+      margin-top: --spacing(8);
+      margin-bottom: --spacing(8);
+      border-radius: 10px;
+      overflow: hidden;
+
+      :where(.hint-title) {
+          display: flex;
+          align-items: center;
+          margin: 0;
+          font-size: var(--font-md);
+          gap: --spacing(2);
+          font-weight: var(--font-weight-semibold);
+          color: var(--hint-header-content);
+          padding-top: --spacing(8);
+          padding-bottom: --spacing(1);
+          padding-left: --spacing(5);
+          padding-right: --spacing(5);
+          border-left-width: 4px;
+          border-color: var(--hint-border);
+      }
+
+      :where(.hint-icon svg) {
+          width: 20px;
+          height: 20px;
+      }
+
+      :where(.hint-content) {
+          padding: --spacing(5);
+          border-left-width: 4px;
+          border-color: var(--hint-border);
+
+          :where(p:first-child) {
+            margin-top: 0;
+          }
+      }
+  }
+
+  .hint.important {
+      --hint-background: --alpha(var(--color-indigo-500) / 10%);
+      --hint-border: var(--color-indigo-500);
+      --hint-header-content: var(--color-indigo-600);
+  }
+
+  .hint.caution {
+      --hint-background: --alpha(var(--color-rose-500) / 10%);
+      --hint-border: var(--color-rose-500);
+      --hint-header-content: var(--color-rose-600);
+  }
+
+  .hint.note {
+      --hint-background: --alpha(var(--color-cyan-500) / 10%);
+      --hint-border: var(--color-cyan-500);
+      --hint-header-content: var(--color-cyan-600);
+  }
+
+  .hint.tip {
+      --hint-background: --alpha(var(--color-teal-500) / 10%);
+      --hint-border: var(--color-teal-500);
+      --hint-header-content: var(--color-teal-600);
+  }
+
+  .hint.warning {
+      --hint-background: --alpha(var(--color-yellow-500) / 10%);
+      --hint-border: var(--color-yellow-500);
+      --hint-header-content: var(--color-yellow-600);
+  }
+
+
+  .dark {
+    .hint.important {
+      --hint-background: --alpha(var(--color-indigo-500) / 5%);
+      --hint-border: --alpha(var(--color-indigo-300) / 30%);
+      --hint-header-content: var(--color-indigo-300);
+    }
+
+    .hint.caution {
+      --hint-background: --alpha(var(--color-rose-500) / 5%);
+      --hint-border: --alpha(var(--color-rose-400) / 30%);
+      --hint-header-content: var(--color-rose-400);
+    }
+
+    .hint.note {
+      --hint-background: --alpha(var(--color-cyan-500) / 5%);
+      --hint-border: --alpha(var(--color-cyan-400) / 30%);
+      --hint-header-content: var(--color-cyan-400);
+    }
+
+    .hint.tip {
+      --hint-background: --alpha(var(--color-teal-500) / 5%);
+      --hint-border: --alpha(var(--color-teal-400) / 30%);
+      --hint-header-content: var(--color-teal-400);
+    }
+
+    .hint.warning {
+      --hint-background: --alpha(var(--color-yellow-500) / 5%);
+      --hint-border: --alpha(var(--color-yellow-400) / 30%);
+      --hint-header-content: var(--color-yellow-400);
+    }
+  }
+
+
 } /* end @layer components */

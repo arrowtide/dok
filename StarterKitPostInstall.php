@@ -1,57 +1,93 @@
 <?php
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Process;
+
+use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\info;
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\spin;
+use function Laravel\Prompts\warning;
 
 class StarterKitPostInstall
 {
+    protected string $env = '';
+
+    protected string $config = '';
+
     public function handle($console)
     {
-        $this->generateDocumentationConfig($console);
-        $this->generateReleaseCollectionTree($console);
-        $this->addShikiEnv($console);
+
+        $this->exportAndDeleteFile('config/dok.export.php', 'config/dok.php');
+        info('[✓] Added config/dok.php');
+        $this->exportAndDeleteFile('package.export.json', 'package.json');
+        info('[✓] Added package.json');
+
+        $this->config = app('files')->get(base_path('config/dok.php'));
+        $this->env = app('files')->get(base_path('.env'));
+
+        warning('Please ensure you are running node version ^20.19.0 || >=22.12.0 or this installation may not work properly.');
+
+        $this->installNodeModules();
+        $this->chooseCodeHighligher();
+        $this->updateEnv();
+        $this->generateReleaseCollectionTree();
+        $this->writeFiles();
+        $this->finish();
     }
 
-    protected function generateDocumentationConfig($console)
+    protected function installNodeModules(): void
     {
-        $configPath = config_path('documentation.php');
 
-        $content = <<<PHP
-<?php
+        $selected = confirm(
+            required: true,
+            label: 'Ready to install node modules?',
+        );
 
-return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Resources
-    |--------------------------------------------------------------------------
-    |
-    | If you're using Github to sync your content, you can add your resources
-    | here.
-    |
-    */
-    'resources' => [
-        // 'YOUR_RESOURCE' => [
-        //     'repo' => 'owner/repo',
-        //     'branch' => 'main',
-        //     'content' => ['docs'],
-        //     'token' => env('GITHUB_SYNC_TOKEN'),
-        // ],
-    ],
-];
-
-PHP;
-
-        if (!File::exists($configPath)) {
-            File::put($configPath, $content);
+        if ($selected) {
+            $this->runCommand(
+                command: 'npm i',
+                message: 'Installing node modules...'
+            );
         }
-
-        $console->line('Placed config/documentation.php');
     }
 
-    protected function generateReleaseCollectionTree($console) 
+    protected function chooseCodeHighligher(): void
+    {
+        $selected = select(
+            required: true,
+            label: 'Which code highligher do you want to use?',
+            options: [
+                'torchlight-engine' => 'Torchlight Engine (Recommended)',
+                'shiki' => 'Shiki',
+                'none' => 'None',
+            ]
+        );
+
+        if ($selected === 'torchlight-engine') {
+            $this->runCommand(
+                command: 'composer require torchlight/engine',
+                message: 'Installing Torchlight Engine...'
+            );
+
+            $this->config = str_replace('PLACEHOLDER_CONFIG_CODE_HIGHLIGHTER', 'torchlight-engine', $this->config);
+
+        } elseif ($selected === 'shiki') {
+            $this->runCommand('composer require spatie/commonmark-shiki-highlighter', message: 'Installing Shiki composer dependencies...');
+            $this->runCommand('npm i shiki', message: 'Installing Shiki node modules...');
+            $this->config = str_replace('PLACEHOLDER_CONFIG_CODE_HIGHLIGHTER', 'shiki', $this->config);
+        }
+    }
+
+    protected function updateEnv(): void
+    {
+        $this->env .= PHP_EOL.'CODE_HIGHLIGHTER_ENABLED=false';
+    }
+
+    protected function generateReleaseCollectionTree()
     {
         $path = base_path('content/trees/collections/releases.yaml');
-        $content = <<<YAML
+        $content = <<<'YAML'
 tree:
   -
     entry: 43637327-fa17-42d4-a0b8-2ebdc90a7638
@@ -61,21 +97,58 @@ tree:
 
 YAML;
 
-        if (!File::exists($path)) {
+        if (! File::exists($path)) {
             File::ensureDirectoryExists(base_path('content/trees/collections'));
             File::put($path, $content);
         }
 
-        $console->line('Placed content/trees/collections/releases.yaml');
+        info('[✓] Generated release collection tree');
     }
 
-    protected function addShikiEnv($console)
+    protected function runCommand(string $command, bool $spin = true, string $message = ''): void
     {
-        $envPath = base_path('.env');
 
-        if (File::exists($envPath)) {
-            file_put_contents($envPath, "\nSHIKI_ENABLED=false", FILE_APPEND);
-            $console->line('Added SHIKI_ENABLED to .env');
+        $result = null;
+
+        if ($spin) {
+            spin(
+                callback: function () use (&$result, $command) {
+                    $result = Process::timeout(120)->run($command);
+                },
+                message: $message
+            );
+        } else {
+            $result = Process::timeout(120)->run($command);
         }
+
+        if ($result->failed()) {
+            throw new \RuntimeException("Command failed: {$command}\n".$result->errorOutput());
+        }
+
+        echo $result->output();
+    }
+
+    protected function writeFiles(): void
+    {
+        app('files')->put(base_path('config/dok.php'), $this->config);
+        app('files')->put(base_path('.env'), $this->env);
+    }
+
+    protected function exportAndDeleteFile(string $source, string $destination): void
+    {
+        $sourcePath = base_path($source);
+        $destinationPath = base_path($destination);
+
+        File::ensureDirectoryExists(dirname($destinationPath));
+
+        File::put($destinationPath, File::get($sourcePath));
+
+        File::delete($sourcePath);
+    }
+
+    protected function finish(): void
+    {
+        info('[✓] CODE_HIGHLIGHTER_ENABLED has been placed in your .env file. If you want to enable, set to `true`');
+        info('I hope this starterkit helps you! If you have any questions or run into any issues, please create an issue on GitHub. Have a nice day!');
     }
 }

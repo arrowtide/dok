@@ -16,9 +16,9 @@
         {{ vite src="resources/css/site.css" }}
     </head>
     <body class="antialiased font-default">
+        <a href="#main-content" class="sr-only focus:not-sr-only bg-white text-black">Skip to main content</a>
+
         {{ template_content }}
-
-
         {{ vite src="resources/js/index.js" }}
 
         {{ stack:popovers }}

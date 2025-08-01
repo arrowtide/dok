@@ -1,0 +1,16 @@
+{{#
+    The copy code button, applied via a modifier to apply to all <pre> elements that also
+    contain a <code> element. Feel free to cuztomise this button however you like. The
+    javascript for this is in resources/js/markdown/copy-code.js
+#}}
+<button
+    x-data="copyCode()"
+    x-bind="eventListeners"
+    x-bind:data-copied="copied"
+    class="group absolute top-3 right-3 px-3 py-2 rounded-lg items-center justify-center cursor-pointer transition duration-100 font-bold gap-1 hidden md:flex"
+>
+    {{ svg src="copy" class="size-5 fill-current block group-data-[copied=true]:hidden group-data-[copied=error]:hidden" aria-hidden="true" }}
+    {{ svg src="check" class="size-5 fill-current group-data-[copied=true]:block hidden" aria-hidden="true"  }}
+    {{ svg src="close" class="size-5 fill-current group-data-[copied=error]:block hidden" aria-hidden="true"  }}
+    <span class="sr-only" x-text="text">Copy</span>
+</button>

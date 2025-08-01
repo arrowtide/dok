@@ -1,0 +1,58 @@
+{{#
+    You can try out a different style by changing refereces to this
+    partial with another from `docs/partials/sidebar/navigation/`
+#}}
+
+<menu class="flex flex-col">
+    {{ nav handle="{release:nav_handle}" }}
+        {{ $depth_1_index = {index} }}
+        <li x-data="menu()">
+            {{ if children }}
+                <h2 class="block">
+                    <button
+                        class="group flex justify-between w-full text-left text-xs font-semibold  text-sidebar-title my-1 px-4 py-3 rounded-xl relative items-center cursor-pointer hover:bg-black/3 dark:hover:bg-white/5 group-hover:text-sidebar-title-focus"
+                        @click="active = active ? null : `{{ index }}`"
+                        :aria-expanded="active == `{{ index }}`"
+                    >
+                        {{ title }}
+
+                        {{ svg src="caret-right" class="size-3 fill-current ml-2 group-aria-expanded:rotate-90 transition duration-100" aria-hidden="true" }}
+                    </button>
+                </h2>
+                <ul
+                    class="flex flex-col pl-3"
+
+                    {{ if ({children} | where('uri', {current_uri}) | count) == 1}}
+                        x-init="active = '{{ $depth_1_index }}'"
+                    {{ else }}
+                        x-cloak
+                    {{ /if }}
+                    x-show="active == `{{ $depth_1_index }}`"
+                    x-collapse.duration.300
+                    >
+                    {{ children }}
+                        <li>
+                            <a href="{{ uri }}" class="block items-center relative text-xs tracking-[0.028rem] text-sidebar-text px-4 py-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/4 {{ if is_current }} bg-accent/15 !text-accent hover:bg-accent/15! {{ /unless}}"">
+                                {{ title }}
+                            </a>
+                        </li>
+                    {{ /children }}
+                </ul>
+            {{ /else }}
+                <li>
+                    <a href="{{ uri }}" class="block items-center relative text-xs tracking-[0.028rem] text-sidebar-text px-4 py-3 rounded-xl hover:bg-black/5 dark:hover:bg-white/4 {{ if is_current }} bg-accent/15 !text-accent hover:bg-accent/15! {{ /unless}}"">
+                        {{ title }}
+                    </a>
+                </li>
+            {{ /if }}
+        </li>
+    {{ /nav }}
+</menu>
+
+<script>
+    function menu(){
+        return {
+            active: null,
+        }
+    }
+</script>

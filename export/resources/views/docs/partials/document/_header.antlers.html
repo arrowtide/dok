@@ -2,44 +2,44 @@
     <div class="flex justify-between flex-wrap sm:flex-nowrap py-2">
 
         <div>
-            {{#  
+            {{#
             Search
 
                 We've added a search button here that you can use as a base for your own search implementation.
             #}}
-            {{# 
+            {{#
             <button class="flex w-full sm:w-auto grow items-center py-5 sm:py-3 gap-3 text-[#777A8E text-text hover:text-text-focus focus:text-focus cursor-pointer transition duration-100 text-xs">
                 {{ svg src="search" class="size-4" }}
                 <span>Search...</span>
-            </button> 
+            </button>
 
             {{ partial:components/separator class="mb-2 sm:hidden" }}
             #}}
         </div>
 
         <div class="flex ml-auto">
-            {{ if {project:has_versions} }} 
+            {{ if {project:has_versions} }}
                 <div class="ml-auto">
                     {{ partial:components/separator type="vertical" class="mx-5" }}
                     {{ partial:docs/partials/versions }}
                 </div>
             {{ /if }}
 
-            {{# 
+            {{#
                 Multisite dropdown
                 We've added a multisite dropdown as an example. Uncomment it if you need multisite :)
 
                 {{ partial:docs/partials/sites container_class="" }}
-                {{ partial:components/separator type="vertical" class ="mx-5" }} 
+                {{ partial:components/separator type="vertical" class ="mx-5" }}
             #}}
 
-            {{ partial:components/separator type="vertical" class="mx-5" }}     
+            {{ partial:components/separator type="vertical" class="mx-5" }}
             {{ partial:docs/partials/theme container_class=""  }}
 
             {{ if {release:github_repo_url} }}
-                {{ partial:components/separator type="vertical" class="mx-5" }} 
-                <a 
-                    href="{{ {release:github_repo_url} | ensure_left('https://') }}" 
+                {{ partial:components/separator type="vertical" class="mx-5" }}
+                <a
+                    href="{{ {release:github_repo_url} | ensure_left('https://') }}"
                     class="flex items-center text-xs gap-3 py-4 text-text hover:text-text-focus focus:text-focus cursor-pointer transition duration-100"
                     target="_blank"
                 >

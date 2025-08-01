@@ -24,7 +24,7 @@ return [
                 'max_heading_level' => 4,
                 'fragment_prefix' => '',
                 'id_prefix' => '',
-                'aria_hidden' => false
+                'aria_hidden' => false,
             ],
             'table_of_contents' => [
                 'position' => 'placeholder',
