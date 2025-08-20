@@ -6,7 +6,7 @@ A beautiful documentation starter kit.
 * New **copy code** button.
 * New **language label** (Torchlight Engine only).
 * New custom breadcrumbs that work from the _navigation_ instead of the current URI.
-* Better designed sidebar navigation. You can now choose between 3 different templates that come with different styles and functionality.
+* Better designed sidebar navigation. You can now choose between 2 different templates that come with different styles and functionality.
 * Enhanced visual styles.
 * Numerous other fixes and accessibility improvements.
 
