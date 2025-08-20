@@ -2,6 +2,19 @@
 @section('title', 'Github Sync')
 
 @section('content')
+
+
+    <div x-data="{
+        counter: 0,
+        increment(){
+            this.counter++;
+        }
+    }" class="card p-6 space-y-4">
+        <button @click="increment()">+1</button>
+        <span x-text="counter"></span>
+    </div>
+
+
     <header class="mb-6">
         @include('statamic::partials.breadcrumb', [
             'url' => cp_route('utilities.index'),
@@ -13,7 +26,7 @@
     </header>
 
     <ul class="grid gap-4">
-        @foreach (config('documentation.resources') as $name => $resource)
+        @foreach (config('dok.resources') as $name => $resource)
             <li class="card">
                 <h2 class="font-bold mb-5"><code>{{ $name }}</code></h2>
 
